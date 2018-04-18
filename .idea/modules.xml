@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Intergrami.iml" filepath="$PROJECT_DIR$/Intergrami.iml" />
+      <module fileurl="file://C:\Intergramii\Intergrami\Intergrami.iml" filepath="C:\Intergramii\Intergrami\Intergrami.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Intergramii\Intergrami\app\app.iml" filepath="C:\Intergramii\Intergrami\app\app.iml" />
     </modules>
   </component>
 </project>
