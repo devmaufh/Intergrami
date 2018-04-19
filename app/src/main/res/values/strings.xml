@@ -1,3 +1,15 @@
 <resources>
+    <!--- Login-->
     <string name="app_name">Intergrami</string>
+    <string name="Login_edCorreo">Correo</string>
+    <string name="Login_btnIniciaSesion">Iniciar sesión</string>
+    <string name="Login_btnRegister">Registrar</string>
+    <string name="TvTienecuenta">¿No tienes una cuenta?</string>
+    <string name="hint_correo">Usuario@dominio.com</string>
+    <string name="hint_password">Contraseña</string>
+    <!--- End Login -->
+    <string name="nombre">Nombre completo</string>
+    <string name="curp">CURP</string>
+    <string name="direccion">Dirección</string>
+    <string name="phone_number">Número de telefono</string>
 </resources>
