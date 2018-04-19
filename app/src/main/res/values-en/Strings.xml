@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--- Layout Login-->
+    <string name="app_name">Intergrami</string>
+    <string name="Login_edCorreo">E-mail</string>
+    <string name="Login_btnIniciaSesion">Sign in</string>
+    <string name="Login_btnRegister">Register</string>
+    <string name="TvTienecuenta">Do you have an account?</string>
+    <string name="hint_correo">username@domain.com</string>
+    <string name="hint_password">Password</string>
+    <!--- Register -->
+    <string name="nombre">Complete name</string>
+    <string name="curp">CURP</string>
+    <string name="direccion">Address 1</string>
+    <string name="phone_number">Phone Number</string>
+
+</resources>
