@@ -1,6 +1,7 @@
 <resources>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
+    <string name="register">Registro</string>
     <string name="Login_edCorreo">Correo</string>
     <string name="Login_btnIniciaSesion">Iniciar sesión</string>
     <string name="Login_btnRegister">Registrar</string>
@@ -14,8 +15,23 @@
     <string name="phone_number">Número de telefono</string>
     <string name="title_activity_home2">Home</string>
 
+
+    <!--Navigation drawer alv :v -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+    <string name="nav_home">Principal</string>
+    <string name="nav_compras">Compras</string>
+    <string name="nav_rentas">Rentas</string>
+    <string name="nav_misproductos">Mis productos</string>
+    <string name="nav_otras_opciones">Otras opciones</string>
+    <string name="nav_configuracion">Configuracion</string>
+    <string name="nav_cerrarSesion">Cerrar sesión</string>
+    <string name="nav_acercade">Acerca de</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Otros-->
+    <string name="Toast_cierra_sesion">Cerrar sesión</string>
+
 </resources>

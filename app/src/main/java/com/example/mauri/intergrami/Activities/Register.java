@@ -1,7 +1,10 @@
-package com.example.mauri.intergrami;
+package com.example.mauri.intergrami.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+
+import com.example.mauri.intergrami.R;
 
 public class Register extends AppCompatActivity {
 
