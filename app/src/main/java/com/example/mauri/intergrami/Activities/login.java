@@ -5,16 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.mauri.intergrami.R;
+import com.squareup.picasso.Picasso;
 
 public class login extends AppCompatActivity {
     Button btn_log,btnRegister;
+    ImageView imagen;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindUI();
+        Picasso.with(this).load(R.drawable.finalfinal).into(imagen);
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +35,8 @@ public class login extends AppCompatActivity {
     public void bindUI(){
         btn_log=(Button)findViewById(R.id.Login_btnLogin);
         btnRegister=(Button)findViewById(R.id.login_btnRegister);
+        imagen=(ImageView)findViewById(R.id.login_Logo);
+
     }
     public void setActivityRegister(){
         startActivity(new Intent(this,Register.class));
