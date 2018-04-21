@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/productos_cardView"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:clickable="true"
+        android:focusable="true"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="4dp">
+
+    <ImageView
+        android:id="@+id/productos_cardView_IvFoto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/finalfinal"
+        android:scaleType="centerCrop"/>
+
+
+        <TextView
+            android:id="@+id/productos_cardView_tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="bottom"
+            android:text="NOMBRE DEL PRODCTO" />
+    <TextView
+        android:id="@+id/productos_cardView_tvPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="bottom|right"
+        android:text="PRECIO PRODUCTO"
+        android:textColor="#d46461"/>
+
+
+</android.support.v7.widget.CardView>

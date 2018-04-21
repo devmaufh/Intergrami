@@ -5,27 +5,27 @@
 
         <item
             android:id="@+id/menu_nav_home"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/home_35px"
             android:title="@string/nav_home" />
         <item
             android:id="@+id/menu_nav_compras"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/compras_35px"
             android:title="@string/nav_compras" />
         <item
             android:id="@+id/menu_nav_rentas"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/rentas_35px"
             android:title="@string/nav_rentas" />
         <item
             android:id="@+id/menu_nav_misproductos"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/misproductos_35px"
             android:title="@string/nav_misproductos"/>
         <item
             android:id="@+id/menu_nav_configuracion"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/config_35px"
             android:title="@string/nav_configuracion"/>
         <item
             android:id="@+id/menu_nav_acercade"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/acercade_35px"
             android:title="@string/nav_acercade"/>
 
     </group>
@@ -33,7 +33,7 @@
         <menu>
             <item
                 android:id="@+id/menu_nav_cerrarsesion"
-                android:icon="@android:drawable/ic_menu_camera"
+                android:icon="@drawable/cerrarsesion_35px"
                 android:title="@string/nav_cerrarSesion"/>
 
 
