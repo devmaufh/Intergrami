@@ -1,5 +1,7 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mauri.intergrami.Fragments.AcercadeFragment;
@@ -19,18 +22,34 @@ import com.example.mauri.intergrami.Fragments.MisProductosFragment;
 import com.example.mauri.intergrami.Fragments.PrincipalFragment;
 import com.example.mauri.intergrami.Fragments.RentasFragment;
 import com.example.mauri.intergrami.R;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity {
+    private CircleImageView perfil_nav;
+    private EditText name_user;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setToolbar();
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView=(NavigationView)findViewById(R.id.navviewHome);
+        perfil_nav=(CircleImageView)findViewById(R.id.nav_image_profile);
+        name_user=(EditText)findViewById(R.id.Nav_EdnameUser);
+        prefs=getSharedPreferences("datos_user", Context.MODE_PRIVATE);
+        setToolbar();
+
+        name_user.setText(prefs.getString("correo",""));
+        Toast.makeText(getApplicationContext(),prefs.getString("correo",""),Toast.LENGTH_LONG).show();
+        String url=prefs.getString("urlfoto","www.facebook.com/null.jpg");
+        Toast.makeText(getApplicationContext(),url,Toast.LENGTH_LONG).show();
+        Picasso.with(getApplicationContext()).load(url).into(perfil_nav);
+
         setFragmentByDefault();
 
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
@@ -41,7 +60,6 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-
             }
 
             @Override
@@ -60,7 +78,6 @@ public class Home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 boolean fragmentTransaction=false;
                 Fragment fragment=null;
-
                 switch(item.getItemId()){
                     case R.id.menu_nav_home:
                         fragment = new PrincipalFragment();
@@ -98,6 +115,8 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
+
     }
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_home); //Muestra el toolbar como ActionBar
@@ -128,4 +147,5 @@ public class Home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

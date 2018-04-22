@@ -8,6 +8,8 @@
     <string name="TvTienecuenta">¿No tienes una cuenta?</string>
     <string name="hint_correo">Usuario@dominio.com</string>
     <string name="hint_password">Contraseña</string>
+    <string name="LoginSwitch">Mantener sesión iniciada</string>
+
     <!--- End Login -->
     <string name="nombre">Nombre completo</string>
     <string name="curp">CURP</string>

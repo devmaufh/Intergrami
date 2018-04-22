@@ -1,7 +1,6 @@
 package com.example.mauri.intergrami.Fragments;
 
-
-import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +17,12 @@ import com.example.mauri.intergrami.Adapters.MyAdapterTierras;
 import com.example.mauri.intergrami.Models.Productos;
 import com.example.mauri.intergrami.Models.Tierras;
 import com.example.mauri.intergrami.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,10 +31,13 @@ public class PrincipalFragment extends Fragment  {
     List<Productos> productos;
     List<Tierras> tierras;
 
-    private RecyclerView rvProductos;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    public RecyclerView rvProductos;
+    public RecyclerView.Adapter mAdapter;
+    public RecyclerView.LayoutManager mLayoutManager;
     private Spinner sp;
+
+
+    private SharedPreferences prefs;
     public PrincipalFragment() {
     }
 
@@ -40,16 +45,18 @@ public class PrincipalFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View v= inflater.inflate(R.layout.fragment_principal, container, false);
+        final View v = inflater.inflate(R.layout.fragment_principal, container, false);
 
-        rvProductos=(RecyclerView) v.findViewById(R.id.principal_RvProductos);
-        sp=(Spinner)v.findViewById(R.id.principal_spOpciones);
-        setTierras(v);
+
+
+        rvProductos = (RecyclerView) v.findViewById(R.id.principal_RvProductos);
+        sp = (Spinner) v.findViewById(R.id.principal_spOpciones);
+        //setProductos(v);
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0) setProductos(v);
-                if(i==1) setTierras(v);
+                if(i==1) setProductos(v);
+                if(i==2) setTierras(v);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -85,7 +92,6 @@ public class PrincipalFragment extends Fragment  {
         });
         rvProductos.setLayoutManager(mLayoutManager);
         rvProductos.setAdapter(mAdapter);
-
     }
     private void setTierras(final View v){
         tierras=getAllTierras();
@@ -100,5 +106,20 @@ public class PrincipalFragment extends Fragment  {
         rvProductos.setAdapter(mAdapter);
     }
 
-
+    @Override
+    public void onStop() {
+        if(productos!=null){
+            for(int i=0;i<productos.size();i++){
+                productos.remove(i);
+                mAdapter.notifyItemRemoved(i);
+            }
+        }
+        if(tierras!=null){
+            for(int i=0;i<tierras.size();i++){
+                tierras.remove(i);
+                mAdapter.notifyItemRemoved(i);
+            }
+        }
+        super.onStop();
+    }
 }

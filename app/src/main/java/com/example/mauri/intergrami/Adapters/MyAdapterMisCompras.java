@@ -1,7 +1,6 @@
 package com.example.mauri.intergrami.Adapters;
 
 import android.content.Context;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mauri.intergrami.Models.Productos;
+import com.example.mauri.intergrami.Models.Mis_productos;
 import com.example.mauri.intergrami.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,73 +18,64 @@ import java.util.List;
  * Created by mauri on 21/04/2018.
  */
 
-public class MyAdapterProducts extends RecyclerView.Adapter<MyAdapterProducts.ViewHolder> {
-    List<Productos> productos;
+public class MyAdapterMisCompras extends RecyclerView.Adapter<MyAdapterMisCompras.ViewHolder>{
+    List<Mis_productos> misproductos;
     private int layout;
     private OnItemClickListener itemClickListener;
     private Context context;
-    public MyAdapterProducts(List<Productos> products, int layout, OnItemClickListener listener){
-        this.productos=products;
+    public MyAdapterMisCompras(List<Mis_productos> mis_productos, int layout, OnItemClickListener listener){
+        this.misproductos=mis_productos;
         this.layout=layout;
         this.itemClickListener=listener;
-
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(layout,parent,false);
         ViewHolder vh= new ViewHolder(v);
         context=parent.getContext();
         return vh;
+
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.bind(productos.get(position),itemClickListener);
+        holder.bind(misproductos.get(position),itemClickListener);
 
     }
 
     @Override
     public int getItemCount() {
-        return productos.size();
+        return misproductos.size();
     }
 
-
-
-
-
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView nombre,precio;
-        ImageView foto;
+        public  TextView tvNombre,tvFolio,tvMonto;
+        public ImageView foto;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            nombre=(TextView)itemView.findViewById(R.id.productos_cardView_tvNombre);
-            precio=(TextView)itemView.findViewById(R.id.productos_cardView_tvPrecio);
-            foto=(ImageView)itemView.findViewById(R.id.productos_cardView_IvFoto);
+            tvNombre=(TextView)itemView.findViewById(R.id.misproductos_cardview_edNombreP);
+            tvFolio=(TextView)itemView.findViewById(R.id.misproductos_cardview_Folio);
+            tvMonto=(TextView)itemView.findViewById(R.id.misproductos_cardview_Monto);
+            foto=(ImageView)itemView.findViewById(R.id.misproductos_cardview_ivFoto);
         }
-        public void bind(final Productos producto, final OnItemClickListener listener){
-            nombre.setText(producto.getNombre());
-            precio.setText("$"+producto.getPrecio());
-            Picasso.with(context).load(producto.getUrlFoto()).into(foto);
+        public void bind(final Mis_productos mis_producto, final OnItemClickListener listener){
+            tvNombre.setText(mis_producto.getNombre());
+            tvFolio.setText("Folio: "+mis_producto.getId_compra());
+            tvMonto.setText("$"+mis_producto.getMonto());
+            Picasso.with(context).load(mis_producto.getUrlfoto()).into(foto);
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(producto,getAdapterPosition());
-
+                    listener.OnItemClick(mis_producto,getAdapterPosition());
                 }
             });
         }
     }
     public interface OnItemClickListener{
-        void onItemClick(Productos producto, int position);
+        void OnItemClick(Mis_productos miproducto, int position);
     }
-
 }
-
-
-
-
-
-
-
-
-

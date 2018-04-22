@@ -8,6 +8,8 @@
     <string name="TvTienecuenta">Do you have an account?</string>
     <string name="hint_correo">username@domain.com</string>
     <string name="hint_password">Password</string>
+    <string name="Login_switch_recuerdame">Remember me</string>
+
     <!--- Register -->
     <string name="nombre">Complete name</string>
     <string name="curp">CURP</string>

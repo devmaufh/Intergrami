@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="opciones_tierra_producto">
+        <item>Seleccione una opción</item>
         <item>Productos</item>
         <item>Tierras</item>
     </string-array>

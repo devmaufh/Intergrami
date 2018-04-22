@@ -53,6 +53,8 @@ public class MyAdapterTierras  extends RecyclerView.Adapter<MyAdapterTierras.Vie
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvTamaño,tvTemporal;
         ImageView foto;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             tvTamaño=(TextView)itemView.findViewById(R.id.tierras_cardview_edTamaño);

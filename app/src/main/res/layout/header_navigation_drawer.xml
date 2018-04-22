@@ -1,7 +1,8 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.Home">
 
     <ImageView
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         android:layout_marginBottom="50dp"/>
 
     <TextView
-        android:id="@+id/navigationDrawer_Header_NameUser"
+        android:id="@+id/Nav_EdnameUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre de usuario"

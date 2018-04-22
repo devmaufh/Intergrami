@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.mauri.intergrami.Activities.login"
+        tools:context=".Activities.login"
         tools:layout_editor_absoluteY="81dp">
 
         <Button
@@ -20,26 +20,26 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="432dp"
+            android:layout_marginTop="12dp"
             android:elevation="15dp"
             android:text="@string/Login_btnRegister"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Login_Tv_notAccount"
             tools:text="@string/Login_btnRegister" />
 
         <TextView
             android:id="@+id/Login_Tv_notAccount"
             android:layout_width="wrap_content"
-            android:layout_height="33dp"
+            android:layout_height="19dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="416dp"
+            android:layout_marginTop="8dp"
             android:text="@string/TvTienecuenta"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/Login_btnLogin" />
 
         <Button
             android:id="@+id/Login_btnLogin"
@@ -48,30 +48,28 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="352dp"
+            android:layout_marginTop="8dp"
             android:elevation="15dp"
             android:text="@string/Login_btnIniciaSesion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Login_Switch_Rememberme"
             tools:text="Iniciar sesión" />
 
         <EditText
             android:id="@+id/Login_edPassword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="260dp"
             android:ems="10"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/Login_edCorreo" />
 
         <ImageView
             android:id="@+id/login_Logo"
@@ -90,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="184dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="UserName@domain.com"
             android:inputType="textEmailAddress"
@@ -98,7 +96,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/login_Logo" />
+
+        <Switch
+            android:id="@+id/Login_Switch_Rememberme"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Recuerdame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Login_edPassword" />
 
     </android.support.constraint.ConstraintLayout>
 
