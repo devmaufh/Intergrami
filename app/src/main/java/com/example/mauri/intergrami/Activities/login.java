@@ -110,7 +110,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             String direccion=jsonObject.optString("direccion");
             String correo=jsonObject.optString("correo");
             String password=jsonObject.optString("password");
-            String urlfoto="https://"+ip+jsonObject.optString("urlfoto");
+            String urlfoto=ip+jsonObject.optString("urlfoto");
             String telefono=jsonObject.optString("telefono");
             Toast.makeText(this,urlfoto,Toast.LENGTH_LONG).show();
 

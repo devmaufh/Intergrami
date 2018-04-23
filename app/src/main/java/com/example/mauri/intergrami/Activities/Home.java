@@ -1,6 +1,5 @@
 package com.example.mauri.intergrami.Activities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,7 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mauri.intergrami.Fragments.AcercadeFragment;
@@ -24,14 +24,14 @@ import com.example.mauri.intergrami.Fragments.RentasFragment;
 import com.example.mauri.intergrami.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Home extends AppCompatActivity {
-    private CircleImageView perfil_nav;
-    private EditText name_user;
+
+    private TextView txtName;
+    private ImageView imageProfiel;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SharedPreferences prefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +39,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView=(NavigationView)findViewById(R.id.navviewHome);
-        perfil_nav=(CircleImageView)findViewById(R.id.nav_image_profile);
-        name_user=(EditText)findViewById(R.id.Nav_EdnameUser);
-        prefs=getSharedPreferences("datos_user", Context.MODE_PRIVATE);
         setToolbar();
-
-        name_user.setText(prefs.getString("correo",""));
-        Toast.makeText(getApplicationContext(),prefs.getString("correo",""),Toast.LENGTH_LONG).show();
-        String url=prefs.getString("urlfoto","www.facebook.com/null.jpg");
-        Toast.makeText(getApplicationContext(),url,Toast.LENGTH_LONG).show();
-        Picasso.with(getApplicationContext()).load(url).into(perfil_nav);
-
         setFragmentByDefault();
-
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -72,6 +61,24 @@ public class Home extends AppCompatActivity {
 
             }
         });
+        prefs=getSharedPreferences("datos_user",MODE_PRIVATE);
+
+
+        View header=navigationView.inflateHeaderView(R.layout.header_navigation_drawer);//Infla NavHeader para manipular sus elementos :v
+
+        imageProfiel=(ImageView)header.findViewById(R.id.nav_image_profile);
+
+//        String url=prefs.getString("urlfoto","nothing.com/x.jpg|");
+        //************************************************* MOSTRAR IMAGEN DESDE EL DISPOSITIVO --usar ASYNCTASK para guardarla
+        Picasso
+                .with(header.getContext())
+                .load(R.drawable.usererror)
+                .placeholder(R.drawable.ic_menu_send)
+                .into(imageProfiel);
+
+
+        txtName=(TextView)header.findViewById(R.id.NavProfile);
+        txtName.setText(prefs.getString("correo","Error al cargar datos"));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

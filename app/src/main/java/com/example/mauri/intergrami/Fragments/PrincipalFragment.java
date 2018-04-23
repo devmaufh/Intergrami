@@ -68,7 +68,7 @@ public class PrincipalFragment extends Fragment  {
 
     private List<Productos> getAllProducts(){
         return new ArrayList<Productos>(){{
-            add(new Productos(1,"Jitomate",15000,"https://scontent.fgdl5-1.fna.fbcdn.net/v/t1.0-9/526110_279081778834895_153879075_n.jpg?_nc_cat=0&oh=61061e4bdd0d79e1c24b068d174cb280&oe=5B6E77B8"));
+            add(new Productos(1,"Jitomate",15000,"http://192.168.1.75/intergrami/resources/fotos_productos/2.png"));
             add(new Productos(2,"Melon",24000,"http://hydroenv.com.mx/catalogo/images/00_Redaccion/cultivo_de_hortalizas/cultivo_de_melon/portada_melon.jpg"));
             add(new Productos(3,"Sandía",16000,"http://agronomaster.com/wp-content/uploads/2017/02/El-Cultivo-De-Sand%C3%ADas-3.jpg"));
             add(new Productos(4,"Aguacate",178000,"https://exoticfruitbox.com/wp-content/uploads/2015/10/aguacate.jpg"));
