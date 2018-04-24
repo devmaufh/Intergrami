@@ -1,5 +1,6 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -61,6 +62,7 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
         prefs=getSharedPreferences("datos_user",MODE_PRIVATE);
 
 
@@ -112,6 +114,8 @@ public class Home extends AppCompatActivity {
                         break;
                     case R.id.menu_nav_cerrarsesion:
                         Toast.makeText(getApplicationContext(),R.string.Toast_cierra_sesion,Toast.LENGTH_SHORT).show();
+                        removeSharedPreferences();
+                        logOut();
                         break;
                 }
                 if(fragmentTransaction){
@@ -121,9 +125,6 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
     }
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_home); //Muestra el toolbar como ActionBar
@@ -154,5 +155,12 @@ public class Home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    private void removeSharedPreferences(){
+        prefs.edit().clear().commit();
+    }
+    private void logOut(){
+        Intent intent= new Intent(this,login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 }

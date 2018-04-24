@@ -39,7 +39,7 @@ import java.net.URL;
 
 public class login extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener  {
     //Variables para conexion con servidor
-    String ip="192.168.1.75"; //Ip del servidor
+    String ip="192.168.43.207"; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
     //
@@ -55,6 +55,11 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         setContentView(R.layout.activity_login);
         bindUI();
         Picasso.with(this).load(R.drawable.finalfinal).into(imagen);
+
+        setCredentialsIfExist();
+
+
+
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +90,9 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         startActivity(new Intent(this,Register.class));
     }
     public void setActivityHome(){
-        startActivity(new Intent(this,Home.class));
+        Intent intent= new Intent(this,Home.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 
@@ -165,5 +172,12 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
 
         }
     }
-    //Obtiene imagen de url y la almacena en directorio en memoria interna
+    private void setCredentialsIfExist(){
+        String email=prefs.getString("correo","");
+        String contraseña=prefs.getString("password","");
+        if(!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(contraseña)){
+            txtMail.setText(email);
+            txtPassword.setText(contraseña);
+        }
+    }
 }
