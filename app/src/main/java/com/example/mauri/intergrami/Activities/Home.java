@@ -2,6 +2,8 @@ package com.example.mauri.intergrami.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -23,12 +25,19 @@ import com.example.mauri.intergrami.Fragments.MisProductosFragment;
 import com.example.mauri.intergrami.Fragments.PrincipalFragment;
 import com.example.mauri.intergrami.Fragments.RentasFragment;
 import com.example.mauri.intergrami.R;
+import com.example.mauri.intergrami.Utils.ClearFiles;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity {
 
     private TextView txtName;
-    private ImageView imageProfiel;
+    private CircleImageView imageProfiel;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SharedPreferences prefs;
@@ -68,16 +77,10 @@ public class Home extends AppCompatActivity {
 
         View header=navigationView.inflateHeaderView(R.layout.header_navigation_drawer);//Infla NavHeader para manipular sus elementos :v
 
-        imageProfiel=(ImageView)header.findViewById(R.id.nav_image_profile);
-
-//        String url=prefs.getString("urlfoto","nothing.com/x.jpg|");
+        imageProfiel=(CircleImageView) header.findViewById(R.id.nav_image_profile);
+        String url=prefs.getString("urlfoto","nothing.com/x.jpg|");
         //************************************************* MOSTRAR IMAGEN DESDE EL DISPOSITIVO --usar ASYNCTASK para guardarla
-        Picasso
-                .with(header.getContext())
-                .load(R.drawable.usererror)
-                .placeholder(R.drawable.ic_menu_send)
-                .into(imageProfiel);
-
+        Picasso.with(header.getContext()).load("http://"+url).into(imageProfiel);
 
         txtName=(TextView)header.findViewById(R.id.NavProfile);
         txtName.setText(prefs.getString("correo","Error al cargar datos"));
@@ -115,6 +118,7 @@ public class Home extends AppCompatActivity {
                     case R.id.menu_nav_cerrarsesion:
                         Toast.makeText(getApplicationContext(),R.string.Toast_cierra_sesion,Toast.LENGTH_SHORT).show();
                         removeSharedPreferences();
+                        ClearFiles.deleteCache(getApplicationContext());
                         logOut();
                         break;
                 }

@@ -39,11 +39,11 @@ public class ComprasFragment extends Fragment {
         View v= inflater.inflate(R.layout.fragment_compras, container, false);
         rvMiscompras=(RecyclerView)v.findViewById(R.id.compras_rvCompras);
 
-        setItemsRecycler(v);
+        //setItemsRecycler(v);
         return v;
     }
     private void setItemsRecycler(final View v){
-        mis_productosList=getAllProducts();
+        //mis_productosList=getAllProducts();
         mLayoutManager=new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterMisCompras(mis_productosList, R.layout.cardview_misproductos, new MyAdapterMisCompras.OnItemClickListener() {
             @Override
@@ -54,14 +54,7 @@ public class ComprasFragment extends Fragment {
         rvMiscompras.setLayoutManager(mLayoutManager);
         rvMiscompras.setAdapter(mAdapter);
     }
-    private List<Mis_productos> getAllProducts(){
-        return new ArrayList<Mis_productos>(){{
-            add(new Mis_productos(1,140000,"Aguacate","Aguacate rojito xd","https://exoticfruitbox.com/wp-content/uploads/2015/10/aguacate.jpg"));
-            add(new Mis_productos(2,10000,"Melon","Melon rojito","http://hydroenv.com.mx/catalogo/images/00_Redaccion/cultivo_de_hortalizas/cultivo_de_melon/portada_melon.jpg"));
-            add(new Mis_productos(3,1000,"Sandía","Sandia rojito xd","http://agronomaster.com/wp-content/uploads/2017/02/El-Cultivo-De-Sand%C3%ADas-3.jpg"));
-        }};
 
-    }
     private void clearData(){
         if(mis_productosList!=null){
             for(int i=0;i<mis_productosList.size();i++){

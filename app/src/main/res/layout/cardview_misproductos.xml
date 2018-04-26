@@ -9,7 +9,6 @@
     android:elevation="10dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="#e2e2db"
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="4dp"

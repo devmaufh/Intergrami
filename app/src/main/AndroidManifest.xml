@@ -14,21 +14,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.login"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".Activities.Register"
             android:label="@string/register" />
         <activity
             android:name=".Activities.Home"
             android:theme="@style/NoActionBar" />
-
-        <activity android:name=".Splash"
+        <activity
+            android:name=".Utils.Splash"
             android:theme="@style/splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.Product_details"></activity>
     </application>
 
 </manifest>

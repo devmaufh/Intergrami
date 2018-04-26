@@ -5,10 +5,10 @@ package com.example.mauri.intergrami.Models;
  */
 
 public class Mis_productos {
-    int id_compra;
-    double monto;
+    String id_compra;
+    String monto;
     String nombre,descripcion,urlfoto;
-    public Mis_productos(int id_compra, double monto, String nombre, String descripcion,String urlfoto){
+    public Mis_productos(String id_compra, String monto, String nombre, String descripcion,String urlfoto){
         this.id_compra=id_compra;
         this.monto=monto;
         this.nombre=nombre;
@@ -16,11 +16,11 @@ public class Mis_productos {
         this.urlfoto=urlfoto;
     }
 
-    public int getId_compra() {
+    public String getId_compra() {
         return id_compra;
     }
 
-    public double getMonto() {
+    public String getMonto() {
         return monto;
     }
 

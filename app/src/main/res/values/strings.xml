@@ -1,4 +1,5 @@
 <resources>
+    <string name="ip_server">192.1683.1.75</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
     <string name="register">Registro</string>
@@ -9,6 +10,7 @@
     <string name="hint_correo">Usuario@dominio.com</string>
     <string name="hint_password">Contraseña</string>
     <string name="LoginSwitch">Mantener sesión iniciada</string>
+    <string name="cargango">Cargando</string>
 
     <!--- End Login -->
     <string name="nombre">Nombre completo</string>

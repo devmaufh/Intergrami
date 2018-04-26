@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/productos_cardView"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="265dp"
         android:clickable="true"
         android:focusable="true"
     android:layout_margin="@dimen/activity_horizontal_margin"
@@ -15,28 +15,53 @@
     <ImageView
         android:id="@+id/productos_cardView_IvFoto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_marginTop="37dp"
+        android:layout_height="188dp"
         android:src="@drawable/finalfinal"
         android:scaleType="centerCrop"/>
-
-
         <TextView
             android:id="@+id/productos_cardView_tvNombre"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
-            android:gravity="bottom"
+            android:layout_gravity="top|center"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
             android:text="NOMBRE DEL PRODCTO" />
     <TextView
         android:id="@+id/productos_cardView_tvPrecio"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="bottom|right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="top|left"
         android:text="PRECIO PRODUCTO"
         android:textColor="#d46461"/>
+    <TextView
+        android:id="@+id/productos_cardView_tvfecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="top|right"
+        android:text="2018-03-01"
+        android:textColor="#d46461"/>
+
+
+    <TextView
+        android:id="@+id/productos_cardView_Descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textStyle="italic"
+        android:text="El texto será cortado, a ver como se ve jijiji :v Texto nuevo edit text maincradía verse chidori jijijijiji xdxd" />
+
 
 
 </android.support.v7.widget.CardView>

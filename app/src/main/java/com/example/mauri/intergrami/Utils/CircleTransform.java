@@ -1,4 +1,4 @@
-package com.example.mauri.intergrami.Models;
+package com.example.mauri.intergrami.Utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

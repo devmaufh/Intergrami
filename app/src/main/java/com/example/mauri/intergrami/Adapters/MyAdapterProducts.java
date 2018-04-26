@@ -13,6 +13,8 @@ import com.example.mauri.intergrami.Models.Productos;
 import com.example.mauri.intergrami.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -54,23 +56,26 @@ public class MyAdapterProducts extends RecyclerView.Adapter<MyAdapterProducts.Vi
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView nombre,precio;
+        public TextView nombre,precio,descripcion,fecha;
         ImageView foto;
         public ViewHolder(View itemView) {
             super(itemView);
             nombre=(TextView)itemView.findViewById(R.id.productos_cardView_tvNombre);
             precio=(TextView)itemView.findViewById(R.id.productos_cardView_tvPrecio);
             foto=(ImageView)itemView.findViewById(R.id.productos_cardView_IvFoto);
+            descripcion=(TextView)itemView.findViewById(R.id.productos_cardView_Descripcion);
+            fecha=(TextView)itemView.findViewById(R.id.productos_cardView_tvfecha);
         }
         public void bind(final Productos producto, final OnItemClickListener listener){
             nombre.setText(producto.getNombre());
             precio.setText("$"+producto.getPrecio());
+            descripcion.setText(producto.getDescripcion());
+            fecha.setText(producto.getFecha());
             Picasso.with(context).load(producto.getUrlFoto()).into(foto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.onItemClick(producto,getAdapterPosition());
-
                 }
             });
         }

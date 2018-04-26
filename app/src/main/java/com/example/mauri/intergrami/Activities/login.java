@@ -1,5 +1,6 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -10,7 +11,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -33,13 +33,15 @@ import com.example.mauri.intergrami.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 public class login extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener  {
     //Variables para conexion con servidor
-    String ip="192.168.43.207"; //Ip del servidor
+    String ip= "192.168.1.65"; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
     //
@@ -49,14 +51,17 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     private ImageView imagen;
     private EditText txtMail,txtPassword;
     private Switch swRemember;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindUI();
         Picasso.with(this).load(R.drawable.finalfinal).into(imagen);
 
         setCredentialsIfExist();
+        Toast.makeText(this,ip,Toast.LENGTH_LONG).show();
 
 
 
@@ -64,6 +69,8 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             @Override
             public void onClick(View view) {
                 if(isValidData(txtMail.getText().toString(),txtPassword.getText().toString())){
+                    progressDialog.setMessage("Iniciando sesión");
+                    progressDialog.show();
                     IniciaSesion();
                 }
                 }
@@ -84,6 +91,8 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         swRemember=(Switch)findViewById(R.id.Login_Switch_Rememberme);
         rq= Volley.newRequestQueue(getApplicationContext());
         prefs= getSharedPreferences("datos_user", Context.MODE_PRIVATE);
+        progressDialog= new ProgressDialog(this);
+
 
     }
     public void setActivityRegister(){
@@ -99,7 +108,8 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     //******* SERVIDOR
     @Override
     public void onErrorResponse(VolleyError error) {
-        //No responde el servidor xd
+        //No responde el servidor xd+
+        progressDialog.dismiss();
         Toast.makeText(this,"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
 
     }
@@ -108,6 +118,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     public void onResponse(JSONObject response) {
         Toast.makeText(this,"Usuario correcto",Toast.LENGTH_SHORT).show();
         try {
+            progressDialog.dismiss();
             JSONArray jsonArray=response.optJSONArray("datos");
             JSONObject jsonObject=null;
             jsonObject=jsonArray.getJSONObject(0);
@@ -149,7 +160,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         }
     }
     //      *********************************************//
-    public void IniciaSesion(){
+       public void IniciaSesion(){
         String url="http://"+ip+"/intergrami/login.php?correo="+txtMail.getText().toString()+
                 "&contraseña="+txtPassword.getText().toString();
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
@@ -169,7 +180,6 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             editor.putString("telefono",telefono);
             editor.commit();//Detiene hilo principal hasta que termina de almacenar datos
             Toast.makeText(this,"Datos guardados en preferences",Toast.LENGTH_SHORT).show();
-
         }
     }
     private void setCredentialsIfExist(){
@@ -180,4 +190,8 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             txtPassword.setText(contraseña);
         }
     }
+    ///////////////////////////////////////////////////777
+    //                      Obtener imagen):
+
+
 }

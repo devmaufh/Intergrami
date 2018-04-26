@@ -5,18 +5,24 @@ package com.example.mauri.intergrami.Models;
  */
 
 public class Productos {
-    int id_product;
+    String id_product;
     String nombre;
-    double precio;
+    String precio;
     String urlFoto;
-    public Productos(int id,String name,double price, String url){
-        this.id_product=id;
-        this.nombre=name;
-        this.precio=price;
-        this.urlFoto=url;
+    String descripcion;
+    String fecha;
+    public Productos(){
     }
 
-    public int getId_product() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getId_product() {
         return id_product;
     }
 
@@ -24,11 +30,35 @@ public class Productos {
         return nombre;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
     public String getUrlFoto() {
         return urlFoto;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setId_product(String id_product) {
+        this.id_product = id_product;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 }

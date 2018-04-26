@@ -3,7 +3,7 @@
     <item
         android:drawable="@color/cardview_light_background" />
     <item>
-        <bitmap android:src="@drawable/finalfinal"
+        <bitmap android:src="@drawable/splash3"
             android:gravity="center"/>
     </item>
 </layer-list>

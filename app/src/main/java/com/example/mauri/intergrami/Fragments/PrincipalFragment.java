@@ -1,43 +1,60 @@
 package com.example.mauri.intergrami.Fragments;
 
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.mauri.intergrami.Activities.Product_details;
 import com.example.mauri.intergrami.Adapters.MyAdapterProducts;
 import com.example.mauri.intergrami.Adapters.MyAdapterTierras;
 import com.example.mauri.intergrami.Models.Productos;
 import com.example.mauri.intergrami.Models.Tierras;
 import com.example.mauri.intergrami.R;
-import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PrincipalFragment extends Fragment  {
+public class PrincipalFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener{
+    String ip= "192.168.1.65"; //Ip del servidor
+    RequestQueue rq;
+    JsonRequest jrq;
     List<Productos> productos;
     List<Tierras> tierras;
-
     public RecyclerView rvProductos;
     public RecyclerView.Adapter mAdapter;
     public RecyclerView.LayoutManager mLayoutManager;
     private Spinner sp;
-
-
     private SharedPreferences prefs;
+    private ProgressDialog progressDialog;
     public PrincipalFragment() {
     }
 
@@ -46,17 +63,20 @@ public class PrincipalFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_principal, container, false);
-
-
-
+        productos= new ArrayList<Productos>();
+        rq= Volley.newRequestQueue(v.getContext());
+        progressDialog= new ProgressDialog(v.getContext());
         rvProductos = (RecyclerView) v.findViewById(R.id.principal_RvProductos);
         sp = (Spinner) v.findViewById(R.id.principal_spOpciones);
-        //setProductos(v);
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==1) setProductos(v);
-                if(i==2) setTierras(v);
+                if(i==1){
+                    Service_Misproductos();
+                }
+                if(i==2){
+                    setTierras(v);
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -66,14 +86,6 @@ public class PrincipalFragment extends Fragment  {
         return v;
     }
 
-    private List<Productos> getAllProducts(){
-        return new ArrayList<Productos>(){{
-            add(new Productos(1,"Jitomate",15000,"http://192.168.1.75/intergrami/resources/fotos_productos/2.png"));
-            add(new Productos(2,"Melon",24000,"http://hydroenv.com.mx/catalogo/images/00_Redaccion/cultivo_de_hortalizas/cultivo_de_melon/portada_melon.jpg"));
-            add(new Productos(3,"Sandía",16000,"http://agronomaster.com/wp-content/uploads/2017/02/El-Cultivo-De-Sand%C3%ADas-3.jpg"));
-            add(new Productos(4,"Aguacate",178000,"https://exoticfruitbox.com/wp-content/uploads/2015/10/aguacate.jpg"));
-        }};
-    }
     private  List<Tierras> getAllTierras(){
         return new ArrayList<Tierras>(){{
             add(new Tierras(1,"Si","1000 metros","https://www.agroempresario.com.ar/img/upload/nota/916f9e9dda10bb1dc4dc.jpg"));
@@ -81,13 +93,15 @@ public class PrincipalFragment extends Fragment  {
         }};
     }
 
-    private void setProductos(final View v){
-        productos=getAllProducts();
+    private void setProductos(final View v) {
+        Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
         mLayoutManager= new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterProducts(productos, R.layout.cardview_productos, new MyAdapterProducts.OnItemClickListener() {
             @Override
             public void onItemClick(Productos producto, int position) {
-                Toast.makeText(v.getContext(),producto.getNombre(),Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(getContext(),Product_details.class);
+                intent.putExtra("id_producto",producto.getId_product());
+                startActivity(intent);
             }
         });
         rvProductos.setLayoutManager(mLayoutManager);
@@ -107,19 +121,60 @@ public class PrincipalFragment extends Fragment  {
     }
 
     @Override
-    public void onStop() {
-        if(productos!=null){
-            for(int i=0;i<productos.size();i++){
-                productos.remove(i);
-                mAdapter.notifyItemRemoved(i);
-            }
-        }
-        if(tierras!=null){
-            for(int i=0;i<tierras.size();i++){
-                tierras.remove(i);
-                mAdapter.notifyItemRemoved(i);
-            }
-        }
-        super.onStop();
+    public void onErrorResponse(VolleyError error) {
+        progressDialog.dismiss();
+        Toast.makeText(getContext(),"Error en respuesta del servidor",Toast.LENGTH_SHORT).show();
+
     }
+    @Override
+    public void onResponse(JSONObject response) {
+        progressDialog.dismiss();
+        Toast.makeText(getContext(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
+        //Cast de array Json
+        try {
+            JSONArray cast= response.getJSONArray("productos");
+            for (int i = 0; i < cast.length(); i++) {
+                JSONObject jo= cast.getJSONObject(i);
+                Productos p= new Productos();
+                String ur=jo.optString("urlfoto").replace("\\","/");
+                p.setId_product(jo.optString("id_producto"));
+                p.setNombre(jo.optString("nombre"));
+                p.setPrecio(jo.optString("precio"));
+                p.setDescripcion(jo.optString("descripcion"));
+                p.setUrlFoto("http://"+ip+ur);
+                p.setFecha(jo.optString("fecha"));
+                productos.add(p);
+                Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
+            }
+            setProductos(getView());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    private void Service_Misproductos(){
+        progressDialog.setMessage(getResources().getText(R.string.cargango));
+        progressDialog.show();
+        String url="http://"+ip+"/intergrami/vistas/vista_productos.php";
+        jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        rq.add(jrq);
+        Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
+    }
+    private void Service_mistierras(){
+        progressDialog.setMessage("Cargando...");
+        progressDialog.show();
+        String url="http://"+ip+"/intergrami/vistas/vista_productos.php";
+        jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        rq.add(jrq);
+        Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
+    }
+    private void changeFragment(){
+       Product_detail fr= new Product_detail();
+        android.support.v4.app.FragmentTransaction transaction= getFragmentManager().
+                beginTransaction();
+        transaction.replace(R.id.content_frame,fr);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+    }
+
 }
