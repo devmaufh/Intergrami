@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
@@ -44,7 +45,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class PrincipalFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener{
-    String ip= "192.168.1.65"; //Ip del servidor
+    String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
     List<Productos> productos;
@@ -63,11 +64,13 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_principal, container, false);
+        ip= getResources().getString(R.string.ip_server);
         productos= new ArrayList<Productos>();
         rq= Volley.newRequestQueue(v.getContext());
         progressDialog= new ProgressDialog(v.getContext());
         rvProductos = (RecyclerView) v.findViewById(R.id.principal_RvProductos);
         sp = (Spinner) v.findViewById(R.id.principal_spOpciones);
+        Service_Misproductos();
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -152,7 +155,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         }
     }
     private void Service_Misproductos(){
-        progressDialog.setMessage(getResources().getText(R.string.cargango));
+        progressDialog.setMessage(getResources().getText(R.string.cargando));
         progressDialog.show();
         String url="http://"+ip+"/intergrami/vistas/vista_productos.php";
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);

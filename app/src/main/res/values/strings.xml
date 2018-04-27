@@ -1,5 +1,5 @@
 <resources>
-    <string name="ip_server">192.1683.1.75</string>
+    <string name="ip_server">192.168.1.65</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
     <string name="register">Registro</string>
@@ -7,10 +7,15 @@
     <string name="Login_btnIniciaSesion">Iniciar sesión</string>
     <string name="Login_btnRegister">Registrar</string>
     <string name="TvTienecuenta">¿No tienes una cuenta?</string>
-    <string name="hint_correo">Usuario@dominio.com</string>
+    <string name="hint_correo">Correo electronico</string>
     <string name="hint_password">Contraseña</string>
     <string name="LoginSwitch">Mantener sesión iniciada</string>
-    <string name="cargango">Cargando</string>
+    <string name="cargando">Cargando</string>
+    <string name="Recuerdame">Recordar sesión</string>
+    <string name="iniciandosesion">Iniciando sesión</string>
+    <string name="correo_invalido">El correo es inválido.
+    Ejemplo: usuario@dominio.com</string>
+    <string name="contraseña_invalida">La contraseña debe contener mínimo 4 caracteres</string>
 
     <!--- End Login -->
     <string name="nombre">Nombre completo</string>
@@ -37,5 +42,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Otros-->
     <string name="Toast_cierra_sesion">Cerrar sesión</string>
+    <string name="Comprar">Comprar</string>
+    <string name="Atras">Atras</string>
+
+    <string-array name="spinner_principal_fragment">
+        <item>Seleccione una opción</item>
+        <item>Productos</item>
+        <item>Tierras</item>
+    </string-array>
 
 </resources>

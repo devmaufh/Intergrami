@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -41,7 +42,7 @@ import java.net.URL;
 
 public class login extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener  {
     //Variables para conexion con servidor
-    String ip= "192.168.1.65"; //Ip del servidor
+    String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
     //
@@ -69,7 +70,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             @Override
             public void onClick(View view) {
                 if(isValidData(txtMail.getText().toString(),txtPassword.getText().toString())){
-                    progressDialog.setMessage("Iniciando sesión");
+                    progressDialog.setMessage(getResources().getString(R.string.iniciandosesion));
                     progressDialog.show();
                     IniciaSesion();
                 }
@@ -83,6 +84,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         });
     }
     public void bindUI(){
+        ip= getResources().getString(R.string.ip_server);
         btn_log=(Button)findViewById(R.id.Login_btnLogin);
         btnRegister=(Button)findViewById(R.id.login_btnRegister);
         imagen=(ImageView)findViewById(R.id.login_Logo);
@@ -92,6 +94,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         rq= Volley.newRequestQueue(getApplicationContext());
         prefs= getSharedPreferences("datos_user", Context.MODE_PRIVATE);
         progressDialog= new ProgressDialog(this);
+
 
 
     }
@@ -150,10 +153,12 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     }
     private boolean isValidData(String email, String password){
         if(!isValidEmail(email)){
-            Toast.makeText(getApplicationContext(),"El correo no es válido, intentelo nuevamente",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getResources().getString(R.string.correo_invalido),
+                    Toast.LENGTH_SHORT).show();
             return false;
         }else if(!isValidPassword(password)){
-            Toast.makeText(getApplicationContext(),"La contraseña debe contener más de 4 caractéres",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getResources().getString(R.string.contraseña_invalida),
+                    Toast.LENGTH_SHORT).show();
             return false;
         }else{
             return true;
@@ -192,6 +197,4 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     }
     ///////////////////////////////////////////////////777
     //                      Obtener imagen):
-
-
 }

@@ -24,8 +24,8 @@ import java.util.List;
 public class MyAdapterProducts extends RecyclerView.Adapter<MyAdapterProducts.ViewHolder> {
     List<Productos> productos;
     private int layout;
-    private OnItemClickListener itemClickListener;
-    private Context context;
+    OnItemClickListener itemClickListener;
+    Context context;
     public MyAdapterProducts(List<Productos> products, int layout, OnItemClickListener listener){
         this.productos=products;
         this.layout=layout;
@@ -83,7 +83,6 @@ public class MyAdapterProducts extends RecyclerView.Adapter<MyAdapterProducts.Vi
     public interface OnItemClickListener{
         void onItemClick(Productos producto, int position);
     }
-
 }
 
 

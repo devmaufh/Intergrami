@@ -34,11 +34,11 @@
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:entries="@array/opciones_tierra_producto"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:entries="@array/opciones_tierra_producto" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
