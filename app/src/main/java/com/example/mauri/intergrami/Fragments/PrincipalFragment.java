@@ -2,6 +2,8 @@ package com.example.mauri.intergrami.Fragments;
 
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mauri.intergrami.Activities.tierra_details;
 import com.example.mauri.intergrami.Activities.Product_details;
 import com.example.mauri.intergrami.Adapters.MyAdapterProducts;
 import com.example.mauri.intergrami.Adapters.MyAdapterTierras;
@@ -40,6 +43,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +71,9 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         final View v = inflater.inflate(R.layout.fragment_principal, container, false);
         ip= getResources().getString(R.string.ip_server);
         productos= new ArrayList<Productos>();
+        tierras= new ArrayList<Tierras>();
         rq= Volley.newRequestQueue(v.getContext());
+        prefs= getActivity().getSharedPreferences("datos_user",Context.MODE_PRIVATE);
         progressDialog= new ProgressDialog(v.getContext());
         rvProductos = (RecyclerView) v.findViewById(R.id.principal_RvProductos);
         sp = (Spinner) v.findViewById(R.id.principal_spOpciones);
@@ -75,9 +82,13 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==1){
+                    productos.clear();
                     Service_Misproductos();
+                    setProductos(v);
                 }
                 if(i==2){
+                    tierras.clear();
+                    Service_mistierras();
                     setTierras(v);
                 }
             }
@@ -89,12 +100,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         return v;
     }
 
-    private  List<Tierras> getAllTierras(){
-        return new ArrayList<Tierras>(){{
-            add(new Tierras(1,"Si","1000 metros","https://www.agroempresario.com.ar/img/upload/nota/916f9e9dda10bb1dc4dc.jpg"));
-            add(new Tierras(1,"No","15600 metros","https://grulacjunior.files.wordpress.com/2016/01/pineapple-field-oahu.jpg"));
-        }};
-    }
+
 
     private void setProductos(final View v) {
         Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
@@ -111,12 +117,14 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         rvProductos.setAdapter(mAdapter);
     }
     private void setTierras(final View v){
-        tierras=getAllTierras();
+        //tierras=getAllTierras();
         mLayoutManager= new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterTierras(tierras, R.layout.cardview_tierras, new MyAdapterTierras.OnItemClickListener() {
             @Override
             public void onItemClick(Tierras tierra, int position) {
-                Toast.makeText(v.getContext(),tierra.getTamaño(),Toast.LENGTH_SHORT).show();
+                Intent intent= new Intent(getContext(),tierra_details.class);
+                intent.putExtra("id_tierra",tierra.getId_tierra());
+                startActivity(intent);
             }
         });
         rvProductos.setLayoutManager(mLayoutManager);
@@ -153,6 +161,24 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        try {
+            JSONArray castt= response.getJSONArray("tierras");
+            for (int i = 0; i < castt.length(); i++)
+            {
+                JSONObject jo= castt.getJSONObject(i);
+                String ur=jo.optString("urlfoto").replace("\\","/");
+                Tierras t= new Tierras();
+                t.setId_tierra(jo.optString("id_tierra"));
+                t.setMonto(jo.optString("monto"));
+                t.setTamaño(jo.optString("tamaño"));
+                t.setUrlfoto("http://"+ip+ur);
+                tierras.add(t);
+                Toast.makeText(getContext(), t.getId_tierra()+t.getTamaño(), Toast.LENGTH_SHORT).show();
+            }
+            setTierras(getView());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     private void Service_Misproductos(){
         progressDialog.setMessage(getResources().getText(R.string.cargando));
@@ -163,21 +189,14 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
     }
     private void Service_mistierras(){
+        String id_user=prefs.getString("id_user","'null'");
         progressDialog.setMessage("Cargando...");
         progressDialog.show();
-        String url="http://"+ip+"/intergrami/vistas/vista_productos.php";
+        String url="http://"+ip+"/intergrami/vistas/vista_tierras.php?id_user="+id_user;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
         Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
     }
-    private void changeFragment(){
-       Product_detail fr= new Product_detail();
-        android.support.v4.app.FragmentTransaction transaction= getFragmentManager().
-                beginTransaction();
-        transaction.replace(R.id.content_frame,fr);
-        transaction.addToBackStack(null);
-        transaction.commit();
 
-    }
 
 }

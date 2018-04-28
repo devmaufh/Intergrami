@@ -4,7 +4,7 @@
     <string name="app_name">Intergrami</string>
     <string name="Login_edCorreo">E-mail</string>
     <string name="Login_btnIniciaSesion">Sign in</string>
-    <string name="Login_btnRegister">Register</string>
+    <string name="Login_btnRegister">Sign up</string>
     <string name="TvTienecuenta">Do you have an account?</string>
     <string name="hint_correo">username@domain.com</string>
     <string name="hint_password">Password</string>

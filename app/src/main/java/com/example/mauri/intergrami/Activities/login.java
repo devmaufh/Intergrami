@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -59,6 +60,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindUI();
+        setToolbar();
         Picasso.with(this).load(R.drawable.finalfinal).into(imagen);
 
         setCredentialsIfExist();
@@ -194,6 +196,12 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             txtMail.setText(email);
             txtPassword.setText(contraseña);
         }
+    }
+    private void setToolbar(){
+        Toolbar toolbar= (Toolbar)findViewById(R.id.activity_login_toolbar); //Muestra el toolbar como ActionBar
+        setSupportActionBar(toolbar);//Muestra titulo de toolbar
+        toolbar.setTitle("Intergrami");
+
     }
     ///////////////////////////////////////////////////777
     //                      Obtener imagen):

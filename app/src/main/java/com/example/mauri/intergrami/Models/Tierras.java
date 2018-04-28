@@ -5,31 +5,39 @@ package com.example.mauri.intergrami.Models;
  */
 
 public class Tierras {
-    int id_tierra;
-    String temporal, tamaño, urlfoto;
-    public Tierras(int id,String tempo, String tamaño,String url){
-        this.id_tierra=id;
-        this.temporal=tempo;
-        this.tamaño=tamaño;
-        this.urlfoto=url;
-
+    String id_tierra;
+    String tamaño, monto, urlfoto;
+    public Tierras(){
     }
-
-    public int getId_tierra() {
+    public String getId_tierra() {
         return id_tierra;
     }
 
-    public String getTemporal() {
-        return temporal;
+    public void setId_tierra(String id_tierra) {
+        this.id_tierra = id_tierra;
     }
 
     public String getTamaño() {
         return tamaño;
     }
 
+    public void setTamaño(String tamaño) {
+        this.tamaño = tamaño;
+    }
+
+    public String getMonto() {
+        return monto;
+    }
+
+    public void setMonto(String monto) {
+        this.monto = monto;
+    }
+
     public String getUrlfoto() {
         return urlfoto;
     }
 
-
+    public void setUrlfoto(String urlfoto) {
+        this.urlfoto = urlfoto;
+    }
 }

@@ -51,19 +51,19 @@ public class MyAdapterTierras  extends RecyclerView.Adapter<MyAdapterTierras.Vie
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvTamaño,tvTemporal;
+        public TextView tvTamaño,tvMonto;
         ImageView foto;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvTamaño=(TextView)itemView.findViewById(R.id.tierras_cardview_edTamaño);
-            tvTemporal=(TextView) itemView.findViewById(R.id.tierras_cardview_edTemporal);
+            tvMonto=(TextView) itemView.findViewById(R.id.tierras_cardview_edmonto);
             foto=(ImageView)itemView.findViewById(R.id.tierras_cardview_ivFoto);
         }
         public void bind(final Tierras tierra, final OnItemClickListener listener){
             tvTamaño.setText(tierra.getTamaño());
-            tvTemporal.setText("Temporal: "+tierra.getTemporal());
+            tvMonto.setText("Monto: $"+tierra.getMonto());
             Picasso.with(context).load(tierra.getUrlfoto()).into(foto);
 
             itemView.setOnClickListener(new View.OnClickListener() {

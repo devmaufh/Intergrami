@@ -70,7 +70,7 @@ public class MyAdapterProducts extends RecyclerView.Adapter<MyAdapterProducts.Vi
             nombre.setText(producto.getNombre());
             precio.setText("$"+producto.getPrecio());
             descripcion.setText(producto.getDescripcion());
-            fecha.setText(producto.getFecha());
+            fecha.setText("Fecha: "+producto.getFecha());
             Picasso.with(context).load(producto.getUrlFoto()).into(foto);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -14,16 +14,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.login"
-            android:theme="@style/NoActionBar"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".Activities.Register"
-            android:label="@string/register"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:label="@string/register" />
         <activity
             android:name=".Activities.Home"
-            android:theme="@style/NoActionBar"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".Utils.Splash"
             android:theme="@style/splashScreen">
@@ -33,10 +33,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Product_details"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".Utils.PopupwindowFull"
-            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".Activities.Product_details"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".Utils.PopupwindowFull"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".Activities.tierra_details"></activity>
     </application>
 
 </manifest>
