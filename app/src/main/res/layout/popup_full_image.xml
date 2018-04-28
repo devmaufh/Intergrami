@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/popupImagefull"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:andrid="http://schemas.android.com/tools">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/popup_closebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_close_ex_2"
+        andrid:gravity="top|left"
+        app:borderWidth="0dp"
+        app:fabSize="normal" />
+
+    <ImageView
+
+        android:id="@+id/popupImagefull_FOTOTOTOTOT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>

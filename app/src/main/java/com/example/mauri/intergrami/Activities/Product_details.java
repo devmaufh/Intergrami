@@ -1,13 +1,29 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +35,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mauri.intergrami.Adapters.MyAdapterProductDetails;
+import com.example.mauri.intergrami.Fragments.Product_detail;
 import com.example.mauri.intergrami.R;
+import com.example.mauri.intergrami.Utils.PopupwindowFull;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
+import com.stfalcon.frescoimageviewer.ImageViewer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,11 +67,14 @@ public class Product_details extends AppCompatActivity implements Response.Liste
     TextView txtTitulo,txtFecha,txtPrecio,txtDescripcion,txtNombreV;
     RatingBar calificacion_vendedor;
     CircleImageView foto_vendedor;
+    private PopupWindow window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+
+
         setToolbar();
         bindUI();
         id_producto=getIntent().getStringExtra("id_producto");
@@ -95,11 +119,16 @@ public class Product_details extends AppCompatActivity implements Response.Liste
         foto_vendedor=(CircleImageView)findViewById(R.id.product_details_profileVendedor);
     }
     private void setFotosRecycler(){
-       mLayoutManager= new StaggeredGridLayoutManager(3,1);
+        boolean isImageFitToScreen;
+
+        mLayoutManager= new StaggeredGridLayoutManager(3,1);
        mAdapter= new MyAdapterProductDetails(urls, R.layout.cardview_productdetails, new MyAdapterProductDetails.OnItemClickListener() {
            @Override
            public void onItemClick(String url, int position) {
-               Toast.makeText(getApplicationContext(),"NAda",Toast.LENGTH_SHORT).show();
+               Intent intent= new Intent(getApplicationContext(),PopupwindowFull.class);
+               intent.putExtra("urlfoto",url);
+               startActivity(intent);
+
            }
        });
        fotos.setLayoutManager(mLayoutManager);

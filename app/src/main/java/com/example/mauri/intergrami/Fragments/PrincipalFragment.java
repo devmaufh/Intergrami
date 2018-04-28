@@ -132,7 +132,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
     @Override
     public void onResponse(JSONObject response) {
         progressDialog.dismiss();
-        Toast.makeText(getContext(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
         //Cast de array Json
         try {
             JSONArray cast= response.getJSONArray("productos");
