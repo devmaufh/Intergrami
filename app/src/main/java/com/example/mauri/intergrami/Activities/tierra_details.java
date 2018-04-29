@@ -69,7 +69,7 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_tierra_detail); //Muestra el toolbar como ActionBar
         setSupportActionBar(toolbar);//Muestra titulo de toolbar
-        setTitle("Detalles");
+        setTitle(getResources().getString(R.string.detalles));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_name);//Icono de la hamburguesa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Toast.makeText(this,getIntent().getStringExtra("id_tierra"),Toast.LENGTH_SHORT).show();
@@ -97,6 +97,7 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
         switch(item.getItemId()){
             case android.R.id.home:
                 Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
+                animacion();
                 finish();
         }
         return super.onOptionsItemSelected(item);
@@ -172,5 +173,8 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
         String url="http://"+ip+"/intergrami/vistas/fotos_tierras.php?id_tierra="+id_tierra;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
+    }
+    private void animacion(){
+        overridePendingTransition(R.anim.godown,R.anim.goup);
     }
 }

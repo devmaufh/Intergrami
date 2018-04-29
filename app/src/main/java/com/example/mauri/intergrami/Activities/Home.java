@@ -1,10 +1,14 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -41,16 +45,19 @@ public class Home extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SharedPreferences prefs;
+    private Dialog notificacion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        notificacion=new Dialog(this);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView=(NavigationView)findViewById(R.id.navviewHome);
         setToolbar();
         setFragmentByDefault();
+        notificacionCompra();
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -166,5 +173,17 @@ public class Home extends AppCompatActivity {
         Intent intent= new Intent(this,login.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+    private void notificacionCompra(){
+        notificacion.setContentView(R.layout.popup_notifiacion);
+        FloatingActionButton btnClose=(FloatingActionButton)notificacion.findViewById(R.id.notificacion_botonclose);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notificacion.dismiss();
+            }
+        });
+        notificacion.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        notificacion.show();
     }
 }

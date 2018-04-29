@@ -67,5 +67,7 @@
     </string-array>
     <string name="encabezado_spinnerTierra">Tiempo</string>
     <string name="monto_por_mes">Monto por mes: </string>
+    <string name="producto_vendido_popup">¡Producto vendido!</string>
+    <string name="ver_detalles_compra">Ver detalles</string>
 
 </resources>

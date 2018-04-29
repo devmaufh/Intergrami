@@ -1,18 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--- Layout Login-->
+    <string name="ip_server">192.168.1.65</string>
+    <string name="detalles">Details</string>
+    <!--- Login-->
     <string name="app_name">Intergrami</string>
+    <string name="register">Register</string>
     <string name="Login_edCorreo">E-mail</string>
     <string name="Login_btnIniciaSesion">Sign in</string>
     <string name="Login_btnRegister">Sign up</string>
-    <string name="TvTienecuenta">Do you have an account?</string>
-    <string name="hint_correo">username@domain.com</string>
+    <string name="TvTienecuenta">Do you have account?</string>
+    <string name="hint_correo">E-mail</string>
     <string name="hint_password">Password</string>
-    <string name="Login_switch_recuerdame">Remember me</string>
+    <string name="LoginSwitch">Remember me</string>
+    <string name="cargando">Loadin</string>
+    <string name="Recuerdame">Remember me</string>
+    <string name="iniciandosesion">Sign in, please wait</string>
+    <string name="correo_invalido">E-mail is invalid.
+    Example: user@domain.com</string>
+    <string name="contraseña_invalida">Password must contain almost 4 characters. please check</string>
 
-    <!--- Register -->
-    <string name="nombre">Complete name</string>
+    <!--- End Login -->
+    <string name="nombre">Full name</string>
     <string name="curp">CURP</string>
-    <string name="direccion">Address 1</string>
-    <string name="phone_number">Phone Number</string>
+    <string name="direccion">Address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="title_activity_home2">Home</string>
+
+
+    <!--Navigation drawer alv :v -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_compras">Shopping history</string>
+    <string name="nav_rentas">Rental history</string>
+    <string name="nav_misproductos">My products</string>
+    <string name="nav_otras_opciones">Other</string>
+    <string name="nav_configuracion">Settings</string>
+    <string name="nav_cerrarSesion">Log out</string>
+    <string name="nav_acercade">About...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Otros-->
+    <string name="Toast_cierra_sesion">Log Out</string>
+    <string name="Comprar">Shop</string>
+    <string name="Atras">Back</string>
+
+    <string-array name="spinner_principal_fragment">
+        <item>Choose an option</item>
+        <item>Products</item>
+        <item>Lands</item>
+    </string-array>
+    <string name="rentar">Rent</string>
+    <string-array name="meses_rentas">
+        <item>1 Month</item>
+        <item>2 Months</item>
+        <item>3 Months</item>
+        <item>4 Months</item>
+        <item>5 Months</item>
+        <item>6 Months</item>
+        <item>7 Months</item>
+        <item>8 Months</item>
+        <item>9 Months</item>
+        <item>10 Months</item>
+        <item>11 Months</item>
+        <item>1 year</item>
+    </string-array>
+    <string name="encabezado_spinnerTierra">Time </string>
+    <string name="monto_por_mes">Price per month: </string>
+
 </resources>

@@ -89,7 +89,7 @@ public class Product_details extends AppCompatActivity implements Response.Liste
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_details); //Muestra el toolbar como ActionBar
         setSupportActionBar(toolbar);//Muestra titulo de toolbar
-        setTitle("Detalles");
+        setTitle(getResources().getString(R.string.detalles));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_name);//Icono de la hamburguesa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Toast.makeText(this,getIntent().getStringExtra("id_producto"),Toast.LENGTH_SHORT).show();
@@ -100,6 +100,7 @@ public class Product_details extends AppCompatActivity implements Response.Liste
         switch(item.getItemId()){
             case android.R.id.home:
                 Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
+                animacion();
                 finish();
         }
         return super.onOptionsItemSelected(item);
@@ -207,5 +208,8 @@ public class Product_details extends AppCompatActivity implements Response.Liste
         String url="http://"+ip+"/intergrami/vistas/fotos_productos.php?id_producto="+id_prod;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
+    }
+    private void animacion(){
+        overridePendingTransition(R.anim.godown,R.anim.goup);
     }
 }

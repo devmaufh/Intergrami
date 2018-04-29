@@ -1,5 +1,6 @@
 package com.example.mauri.intergrami.Fragments;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -197,6 +198,8 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         rq.add(jrq);
         Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
     }
-
+    private void animacion(){
+        ((Activity) getContext()).overridePendingTransition(R.anim.goup,R.anim.godown);
+    }
 
 }

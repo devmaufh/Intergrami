@@ -3,6 +3,7 @@ package com.example.mauri.intergrami.Utils;
 import android.content.Context;
 
 import java.io.File;
+import  android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by mauri on 23/04/2018.
@@ -32,4 +33,5 @@ public class ClearFiles {
             return false;
         }
     }
+
 }
