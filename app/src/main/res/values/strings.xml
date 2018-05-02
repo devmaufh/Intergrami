@@ -1,5 +1,5 @@
 <resources>
-    <string name="ip_server">192.168.1.65</string>
+    <string name="ip_server">192.168.1.66</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
     <string name="register">Registro</string>
@@ -69,5 +69,8 @@
     <string name="monto_por_mes">Monto por mes: </string>
     <string name="producto_vendido_popup">¡Producto vendido!</string>
     <string name="ver_detalles_compra">Ver detalles</string>
-
+    <string name="Monto">Monto: </string>
+    <string name="No_tien_productosRegi">No tiene productos registrados</string>
+    <string name="producto">Producto</string>
+    <string name="Tierra">Tierra</string>
 </resources>

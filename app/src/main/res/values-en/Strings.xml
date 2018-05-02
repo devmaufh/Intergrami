@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ip_server">192.168.1.65</string>
+    <string name="ip_server">192.168.1.66</string>
     <string name="detalles">Details</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
@@ -69,5 +69,6 @@
     </string-array>
     <string name="encabezado_spinnerTierra">Time </string>
     <string name="monto_por_mes">Price per month: </string>
+    <string name="No_tien_productosRegi">Nothing to show</string>
 
 </resources>

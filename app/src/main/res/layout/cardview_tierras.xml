@@ -6,6 +6,7 @@
     android:id="@+id/tierras_cardview"
     android:layout_width="match_parent"
     android:layout_height="265dp"
+    android:elevation="15dp"
     android:clickable="true"
     android:focusable="true"
     android:layout_margin="@dimen/activity_horizontal_margin"

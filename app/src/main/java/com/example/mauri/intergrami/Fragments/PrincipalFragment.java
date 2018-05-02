@@ -184,7 +184,9 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
     private void Service_Misproductos(){
         progressDialog.setMessage(getResources().getText(R.string.cargando));
         progressDialog.show();
-        String url="http://"+ip+"/intergrami/vistas/vista_productos.php";
+        String id_user=prefs.getString("id_user","'null'");
+        Toast.makeText(getContext(), "ID del user: "+id_user, Toast.LENGTH_SHORT).show();
+        String url="http://"+ip+"/intergrami/vistas/vista_productos.php?id_user="+id_user;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
         Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();

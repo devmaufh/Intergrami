@@ -2,13 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:andorid="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.mauri.intergrami.Fragments.MisProductosFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/misproductos_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="MIS PRODUCTOS"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:background="?android:attr/colorPrimary"
+        android:minHeight="?android:attr/actionBarSize"
+        android:elevation="@dimen/activity_horizontal_margin"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/misproductos_viewpager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="48dp"
+        android:layout_height="wrap_content"/>
 </FrameLayout>

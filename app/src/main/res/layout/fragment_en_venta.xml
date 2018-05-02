@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mauri.intergrami.Fragments.EnVentaFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/enventa_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="492dp" />
+    <TextView
+        android:id="@+id/enventa_texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/No_tien_productosRegi"
+        android:textSize="20dp"
+        android:textColor="#a1a0a0"
+        android:layout_gravity="center"/>
+
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/enventa_menufabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:fab_labelStyle="@style/Etiquetas"
+        app:fab_addButtonColorNormal="@color/colorPrimary"
+        app:fab_addButtonColorPressed="@color/colorAccent"
+        app:fab_addButtonSize="normal"
+        app:fab_labelsPosition="left"
+        >
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/enventa_fabaddproducto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_colorPressed="@color/colorPrimary"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/tomato_35px"
+            app:fab_title="@string/producto"
+            />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/enventa_fabaddtierra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorPressed="@color/colorPrimary"
+            app:fab_colorNormal="@color/colorAccent"
+            app:fab_icon="@drawable/lands_35px"
+            app:fab_size="mini"
+            app:fab_title="@string/Tierra"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</FrameLayout>
