@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Registerproducts">
+
+    <include
+        android:id="@+id/registroproductos_toolbar"
+        layout="@layout/componente_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="54dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="266dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/registrarproducto"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registroproductos_textfieldboxes_nombreproducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                app:labelText="@string/nombreproducto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:useDenseSpacing="true">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registroproductos_textfieldboxes_nombre_edNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registroproductos_textfieldboxes_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/descripcionproducto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_textfieldboxes_nombreproducto"
+                app:maxCharacters="150"
+                app:minCharacters="0"
+                app:useDenseSpacing="true">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registroproductos_textfieldboxes_descripcion_edDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textAlignment="center" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registroproductos_textfieldboxes_precio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/precioproducto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_textfieldboxes_descripcion"
+                app:useDenseSpacing="true">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registroproductos_textfieldboxes_precio_edPrecio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    app:prefix="$"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/registroproductos_recyclerFotos"
+                android:layout_width="match_parent"
+                android:layout_height="183dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_textfieldboxes_precio">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text=" "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_recyclerFotos" />
+
+            <Button
+                android:id="@+id/button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="52dp"
+                android:text="@string/Registrar_producto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_recyclerFotos" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/registroproductos_fbaAddPhoto"
+                android:layout_width="60dp"
+                android:layout_height="84dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="160dp"
+                android:src="@drawable/add_48"
+                app:fab_size="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registroproductos_textfieldboxes_precio" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

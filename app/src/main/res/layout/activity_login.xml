@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res-auto">
@@ -25,8 +26,8 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:elevation="15dp"
                 android:text="@string/Login_btnRegister"
@@ -53,8 +54,8 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:elevation="15dp"
                 android:text="@string/Login_btnIniciaSesion"
@@ -64,46 +65,49 @@
                 app:layout_constraintTop_toBottomOf="@+id/Login_Switch_Rememberme"
                 tools:text="Iniciar sesión" />
 
-            <EditText
-                android:id="@+id/Login_edPassword"
-                android:layout_width="0dp"
-                android:layout_height="47dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:ems="10"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/login_textfieldboxes_correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="188dp"
                 android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Login_edCorreo" />
-
-            <ImageView
-                android:id="@+id/login_Logo"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:scaleType="centerInside"
+                app:labelText="@string/hint_correo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/finalfinal" />
+                app:useDenseSpacing="true">
 
-            <EditText
-                android:id="@+id/Login_edCorreo"
-                android:layout_width="0dp"
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/login_textfieldboxes_curp_edCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/login_textfieldboxes_contraseña"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:hint="UserName@domain.com"
-                android:inputType="textEmailAddress"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:textAlignment="center"
+                app:endIcon="@drawable/show_password_24px"
+                app:labelText="@string/hint_password"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/login_Logo" />
+                app:layout_constraintTop_toBottomOf="@+id/login_textfieldboxes_correo"
+                app:useDenseSpacing="true">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/login_textfieldboxes_curp_edContraseña"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
             <Switch
                 android:id="@+id/Login_Switch_Rememberme"
@@ -111,11 +115,26 @@
                 android:layout_height="22dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/Recuerdame"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Login_edPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/login_textfieldboxes_contraseña" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="159dp"
+                android:layout_height="137dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/login_textfieldboxes_correo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                layout:srcCompat="@mipmap/logito" />
 
         </android.support.constraint.ConstraintLayout>
 

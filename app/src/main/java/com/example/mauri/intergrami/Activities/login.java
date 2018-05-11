@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -41,17 +43,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
+import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
+import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
+
 public class login extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener  {
     //Variables para conexion con servidor
     String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
+    int flagPassword=0;
     //
     SharedPreferences prefs;//PErsistencia de datos para que no se loggee cada de que entre a la app
-
+    TextFieldBoxes tfbCorreo,tfbContraseña;
     private Button btn_log,btnRegister;
-    private ImageView imagen;
-    private EditText txtMail,txtPassword;
+    private ExtendedEditText txtMail,txtPassword;
     private Switch swRemember;
     ProgressDialog progressDialog;
     @Override
@@ -61,8 +67,6 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         setContentView(R.layout.activity_login);
         bindUI();
         setToolbar();
-        Picasso.with(this).load(R.drawable.finalfinal).into(imagen);
-
         setCredentialsIfExist();
         Toast.makeText(this,ip,Toast.LENGTH_LONG).show();
 
@@ -89,15 +93,42 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         ip= getResources().getString(R.string.ip_server);
         btn_log=(Button)findViewById(R.id.Login_btnLogin);
         btnRegister=(Button)findViewById(R.id.login_btnRegister);
-        imagen=(ImageView)findViewById(R.id.login_Logo);
-        txtMail=(EditText)findViewById(R.id.Login_edCorreo);
-        txtPassword=(EditText)findViewById(R.id.Login_edPassword);
+        tfbCorreo=(TextFieldBoxes)findViewById(R.id.login_textfieldboxes_correo);
+        tfbContraseña=(TextFieldBoxes)findViewById(R.id.login_textfieldboxes_contraseña);
+        txtMail=(ExtendedEditText) findViewById(R.id.login_textfieldboxes_curp_edCorreo);
+        txtPassword=(ExtendedEditText) findViewById(R.id.login_textfieldboxes_curp_edContraseña);
+
         swRemember=(Switch)findViewById(R.id.Login_Switch_Rememberme);
         rq= Volley.newRequestQueue(getApplicationContext());
         prefs= getSharedPreferences("datos_user", Context.MODE_PRIVATE);
         progressDialog= new ProgressDialog(this);
 
 
+        tfbCorreo.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String s, boolean b) {
+                if(txtMail.getText().toString().length()>40)
+                    tfbCorreo.setError(getResources().getString(R.string.valida_correo),true);
+            }
+        });
+        tfbContraseña.setSimpleTextChangeWatcher(new SimpleTextChangedWatcher() {
+            @Override
+            public void onTextChanged(String s, boolean b) {
+                if(txtPassword.getText().toString().length()>40)
+                    tfbContraseña.setError(getResources().getString(R.string.valida_correo),true);
+            }
+        });
+        tfbContraseña.getEndIconImageButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flagPassword++;
+                if(flagPassword%2==0)
+                    txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());//edContraseña.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                else
+                    txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());//edContraseña.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                txtPassword.setSelection(txtPassword.getText().length());
+            }
+        });
 
     }
     public void setActivityRegister(){
@@ -155,10 +186,12 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
     }
     private boolean isValidData(String email, String password){
         if(!isValidEmail(email)){
+            tfbCorreo.setError(getResources().getString(R.string.correo_invalido),true);
             Toast.makeText(getApplicationContext(),getResources().getString(R.string.correo_invalido),
                     Toast.LENGTH_SHORT).show();
             return false;
         }else if(!isValidPassword(password)){
+            tfbContraseña.setError(getResources().getString(R.string.contraseña_invalida),true);
             Toast.makeText(getApplicationContext(),getResources().getString(R.string.contraseña_invalida),
                     Toast.LENGTH_SHORT).show();
             return false;

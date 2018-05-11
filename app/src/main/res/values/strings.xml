@@ -1,5 +1,5 @@
 <resources>
-    <string name="ip_server">192.168.1.66</string>
+    <string name="ip_server">192.168.1.67</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
     <string name="register">Registro</string>
@@ -73,4 +73,24 @@
     <string name="No_tien_productosRegi">No tiene productos registrados</string>
     <string name="producto">Producto</string>
     <string name="Tierra">Tierra</string>
+    <string name="detalles">Details</string>
+    <string name="registro_helper_curp">La curp debe contener explicitamente 18 caracteres</string>
+    <string name="registro_valida_nombre">Este campo no puede ser mayor a 50 caracteres</string>
+    <string name="valida_telefono">Este campo debe contener solo 10 digitos</string>
+    <string name="valida_correo">El correo no debe contener más de 40 caracteres</string>
+    <string name="check_correo">Correo inválido, ejemplo: usuario@dominio.com</string>
+    <string name="reescribe_contra">Valida tu contraseña</string>
+    <string name="contraseña_iguales">Las contraseñas deben ser iguales</string>
+    <string name="agrega_foto">Agregar foto</string>
+    <string name="No_seleccion_imagen">No seleccionó ninguna imagen</string>
+    <string name="algo_anda_mal">Algo anda mal...</string>
+    <string name="registrarproducto">Registrar producto</string>
+    <string name="nombreproducto">Nombre del producto</string>
+    <string name="descripcionproducto">Agrega una descripción de tu producto</string>
+    <string name="precioproducto">Precio</string>
+    <string name="Registrar_producto">Registrar producto</string>
+    <string name="seleccionefotos">Seleccione una o más fotos</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="portada_foto">Elegir como portada</string>
+
 </resources>

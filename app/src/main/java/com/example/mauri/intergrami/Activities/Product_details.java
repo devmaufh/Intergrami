@@ -38,6 +38,7 @@ import com.example.mauri.intergrami.Adapters.MyAdapterProductDetails;
 import com.example.mauri.intergrami.Fragments.Product_detail;
 import com.example.mauri.intergrami.R;
 import com.example.mauri.intergrami.Utils.PopupwindowFull;
+import com.example.mauri.intergrami.Utils.SetFullImages;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
@@ -126,9 +127,10 @@ public class Product_details extends AppCompatActivity implements Response.Liste
        mAdapter= new MyAdapterProductDetails(urls, R.layout.cardview_productdetails, new MyAdapterProductDetails.OnItemClickListener() {
            @Override
            public void onItemClick(String url, int position) {
-               Intent intent= new Intent(getApplicationContext(),PopupwindowFull.class);
-               intent.putExtra("urlfoto",url);
-               startActivity(intent);
+               //Intent intent= new Intent(getApplicationContext(),PopupwindowFull.class);
+               //intent.putExtra("urlfoto",url);
+               //startActivity(intent);
+               SetFullImages.startViewerImages(getApplicationContext(),urls,position);
 
            }
        });
@@ -136,20 +138,6 @@ public class Product_details extends AppCompatActivity implements Response.Liste
        fotos.setAdapter(mAdapter);
 
     }
-    private List<String> getDatos(){
-        return new ArrayList<String>(){{
-           add("http://192.168.1.65/intergrami/resources/fotos_productos/1.jpg");
-           add("http://192.168.1.65/intergrami/resources/fotos_productos/2.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/3.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/2.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/1.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/1.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/2.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/3.jpg");
-            add("http://192.168.1.65/intergrami/resources/fotos_productos/2.jpg");
-        }};
-    }
-
     //              Servidor
     @Override
     public void onErrorResponse(VolleyError error) {

@@ -23,6 +23,7 @@ public class MyAdapterMisCompras extends RecyclerView.Adapter<MyAdapterMisCompra
     private int layout;
     private OnItemClickListener itemClickListener;
     private Context context;
+
     public MyAdapterMisCompras(List<Mis_productos> mis_productos, int layout, OnItemClickListener listener){
         this.misproductos=mis_productos;
         this.layout=layout;

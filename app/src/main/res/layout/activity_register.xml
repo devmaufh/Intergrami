@@ -1,153 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent"
-   >
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mauri.intergrami.Activities.Register">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/Register_btnRegister2"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="624dp"
-        android:elevation="15dp"
-        android:text="@string/Login_btnRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Registrarse" />
+    <include android:id="@+id/registro_toolbar"
+        layout="@layout/componente_toolbar"/>
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="56dp">
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.example.mauri.intergrami.Activities.Register">
 
-    <EditText
-        android:id="@+id/Register_edPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="544dp"
-        android:ems="10"
-        android:hint="@string/hint_password"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Register_IvPerfil" />
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_nombre"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                app:labelText="@string/nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:useDenseSpacing="true">
 
-    <EditText
-        android:id="@+id/Register_edTelefono"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="432dp"
-        android:ems="10"
-        android:hint="@string/phone_number"
-        android:inputType="phone"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_nombre_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-    <EditText
-        android:id="@+id/Register_edCorreo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="492dp"
-        android:ems="10"
-        android:hint="@string/hint_correo"
-        android:inputType="textEmailAddress"
-        android:maxLength="40"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_curp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/curp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_nombre"
+                app:useDenseSpacing="true">
 
-    <ImageView
-        android:id="@+id/Register_IvPerfil"
-        android:layout_width="0dp"
-        android:layout_height="210dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/finalfinal" />
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/Register_fbaAddImagePerfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="188dp"
-        android:clickable="true"
-        app:fabSize="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add_48" />
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/direccion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_curp"
+                app:useDenseSpacing="true">
 
-    <EditText
-        android:id="@+id/Register_edDireccion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="368dp"
-        android:ems="10"
-        android:hint="@string/direccion"
-        android:inputType="textPersonName"
-        android:maxLength="50"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edDireccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-    <EditText
-        android:id="@+id/register_edNombre2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="252dp"
-        android:ems="10"
-        android:hint="@string/nombre"
-        android:inputType="textPersonName"
-        android:maxLength="50"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/phone_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_direccion"
+                app:useDenseSpacing="true">
 
-    <EditText
-        android:id="@+id/register_edCurp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="308dp"
-        android:ems="10"
-        android:hint="@string/curp"
-        android:inputType="textPersonName"
-        android:maxLength="18"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-</android.support.constraint.ConstraintLayout>
-</ScrollView>
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:labelText="@string/hint_correo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_telefono"
+                app:useDenseSpacing="true">
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:endIcon="@drawable/show_password_24px"
+                app:labelText="@string/hint_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_correo"
+                app:useDenseSpacing="true"
+                >
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/registro_textfieldboxes_valida_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                app:endIcon="@drawable/show_password_24px"
+                app:labelText="@string/reescribe_contra"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_password"
+                app:useDenseSpacing="true"
+                >
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/registro_textfieldboxes_curp_edValidaPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/registro_fotoperfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/photo_add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_valida_password" />
+
+            <Button
+                android:id="@+id/registro_btnRegistrar"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_fotoperfil" />
+
+            <Button
+                android:id="@+id/registro_btnAddPhoto"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="64dp"
+                android:text="@string/agrega_foto"
+                app:layout_constraintEnd_toStartOf="@+id/registro_fotoperfil"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registro_textfieldboxes_valida_password" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -3,7 +3,9 @@
     package="com.example.mauri.intergrami">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApp"
@@ -41,7 +43,9 @@
         <activity
             android:name=".Utils.PopupwindowFull"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".Activities.tierra_details"></activity>
+        <activity android:name=".Activities.tierra_details" />
+        <activity android:name=".Activities.Registerproducts" />
+        <activity android:name=".Activities.ImageViewer"></activity>
     </application>
 
 </manifest>

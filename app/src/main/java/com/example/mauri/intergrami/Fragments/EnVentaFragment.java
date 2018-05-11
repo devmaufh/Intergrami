@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mauri.intergrami.Activities.Product_details;
+import com.example.mauri.intergrami.Activities.Registerproducts;
 import com.example.mauri.intergrami.Adapters.MyAdapterProducts;
 import com.example.mauri.intergrami.Models.Productos;
 import com.example.mauri.intergrami.R;
@@ -42,6 +44,7 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
     String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
+    com.getbase.floatingactionbutton.FloatingActionButton add_producto;
     List<Productos> productos;
     public RecyclerView rvProductos;
     public RecyclerView.Adapter mAdapter;
@@ -59,10 +62,18 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
         View v = inflater.inflate(R.layout.fragment_en_venta, container, false);
         bindUI(v);
         Service_Misproductos();
+        add_producto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Registerproducts.class);
+                startActivity(intent);
+            }
+        });
         return v;
     }
     private void bindUI(View v){
         ip= getResources().getString(R.string.ip_server);
+        add_producto= (com.getbase.floatingactionbutton.FloatingActionButton) v.findViewById(R.id.enventa_fabaddproducto);
         productos= new ArrayList<Productos>();
         rq= Volley.newRequestQueue(v.getContext());
         prefs= getActivity().getSharedPreferences("datos_user", Context.MODE_PRIVATE);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menufoto_eliminar"
+        android:title="@string/eliminar"
+    />
+    <item android:id="@+id/menufoto_portada"
+        android:title="@string/portada_foto"
+        />
+
+</menu>

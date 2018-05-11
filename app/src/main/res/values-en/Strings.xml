@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ip_server">192.168.1.66</string>
+    <string name="ip_server">192.168.1.67</string>
     <string name="detalles">Details</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>
@@ -70,5 +70,23 @@
     <string name="encabezado_spinnerTierra">Time </string>
     <string name="monto_por_mes">Price per month: </string>
     <string name="No_tien_productosRegi">Nothing to show</string>
+    <string name="registro_helper_curp">This field can not be greater than 18 characters</string>
+    <string name="registro_valida_nombre">This field can not be greater than 50 characters</string>
+    <string name="valida_telefono">This field must contain only 10 digits</string>
+    <string name="valida_correo">This field can not be greater than 40 characters</string>
+    <string name="reescribe_contra">Validate your password</string>
+    <string name="contraseña_iguales">Passwords must be the same</string>
+    <string name="agrega_foto">Add profile Photo</string>
+    <string name="No_seleccion_imagen">You havent picked Image</string>
+    <string name="algo_anda_mal">Something went wrong</string>
+    <string name="check_correo">Invalid email, example: user@domain.com</string>
+    <string name="registrarproducto">Product register</string>
+    <string name="nombreproducto">Product name</string>
+    <string name="descripcionproducto">Add a descripcion from your product</string>
+    <string name="precioproducto">Price</string>
+    <string name="Registrar_producto">Add product</string>
+    <string name="seleccionefotos">Choose one or more pictures</string>
+    <string name="eliminar">Delete</string>
+    <string name="portada_foto">Set</string>
 
 </resources>
