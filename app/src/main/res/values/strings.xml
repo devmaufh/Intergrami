@@ -37,6 +37,8 @@
     <string name="nav_configuracion">Configuracion</string>
     <string name="nav_cerrarSesion">Cerrar sesión</string>
     <string name="nav_acercade">Acerca de</string>
+    <string name="nav_mistierras">Mis tierras</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -92,5 +94,7 @@
     <string name="seleccionefotos">Seleccione una o más fotos</string>
     <string name="eliminar">Eliminar</string>
     <string name="portada_foto">Elegir como portada</string>
+    <string name="no_tiene_productos_vendidos">Aún no ha vendido ningún producto ):</string>
+    <string name="compartir">Compartir</string>
 
 </resources>

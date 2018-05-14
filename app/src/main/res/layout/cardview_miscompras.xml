@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/cardview_miscompras"
+    android:layout_height="240dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:elevation="15dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="4dp">
+    <ImageView
+        android:id="@+id/cardview_miscompras_ImageViewProducto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/fondo7"
+        android:scaleType="centerCrop">
+    </ImageView>
+    <TextView
+        android:id="@+id/cardview_miscompras_textViewNombreProd"
+        android:textColor="#FFF"
+        android:text="150 cabezas de ganado"
+        android:textSize="25dp"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="bottom"/>
+
+    <Button
+        android:id="@+id/cardview_miscompras_btnDetalles"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="0dp"
+        android:text="@string/ver_detalles_compra" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="bottom|center_horizontal"/>
+
+    <Button
+        android:id="@+id/cardview_miscompras_btnCompartir"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="0dp"
+        android:text="@string/compartir" />
+</android.support.v7.widget.CardView>

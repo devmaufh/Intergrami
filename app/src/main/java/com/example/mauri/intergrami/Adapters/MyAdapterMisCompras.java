@@ -66,8 +66,6 @@ public class MyAdapterMisCompras extends RecyclerView.Adapter<MyAdapterMisCompra
             tvFolio.setText("Folio: "+mis_producto.getId_compra());
             tvMonto.setText("$"+mis_producto.getMonto());
             Picasso.with(context).load(mis_producto.getUrlfoto()).into(foto);
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

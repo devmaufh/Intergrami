@@ -71,6 +71,8 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_principal, container, false);
         ip= getResources().getString(R.string.ip_server);
+        Toast.makeText(v.getContext(), "On CReate", Toast.LENGTH_SHORT).show();
+
         productos= new ArrayList<Productos>();
         tierras= new ArrayList<Tierras>();
         rq= Volley.newRequestQueue(v.getContext());
@@ -203,5 +205,4 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
     private void animacion(){
         ((Activity) getContext()).overridePendingTransition(R.anim.goup,R.anim.godown);
     }
-
 }

@@ -12,21 +12,34 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.mauri.intergrami.Adapters.AdapterPhotos2;
 import com.example.mauri.intergrami.R;
+import com.example.mauri.intergrami.Utils.ConvertImgString;
 import com.example.mauri.intergrami.Utils.SetFullImages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Registerproducts extends AppCompatActivity {
+    String ip;
     int auxiliarForRemovePhoto;
+    StringRequest stringRequest;
+    RequestQueue queue;
     List<String> imagesPath;
     TextFieldBoxes tfbNombreproducto,tfbDescripcionproducto,tfbPrecio;
     ExtendedEditText edNombre, edDescripcion,edPrecio;
@@ -34,6 +47,7 @@ public class Registerproducts extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     FloatingActionButton fbaAddPhotos;
+    Button btnRegistrar;
     //For image Selection
     int PICK_IMAGE_MULTIPLE = 1;
     @Override
@@ -42,6 +56,14 @@ public class Registerproducts extends AppCompatActivity {
         setContentView(R.layout.activity_registerproducts);
         bindUI();
         setToolbar();
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(imagesPath.size()>0){
+                    ServiceUploadFotos();
+                }
+            }
+        });
     }
     private void bindUI(){
         tfbNombreproducto=(TextFieldBoxes)findViewById(R.id.registroproductos_textfieldboxes_nombreproducto);
@@ -52,7 +74,9 @@ public class Registerproducts extends AppCompatActivity {
         edPrecio=(ExtendedEditText)findViewById(R.id.registroproductos_textfieldboxes_precio_edPrecio);
         rvPhotos=(RecyclerView)findViewById(R.id.registroproductos_recyclerFotos);
         fbaAddPhotos=(FloatingActionButton)findViewById(R.id.registroproductos_fbaAddPhoto);
+        btnRegistrar=(Button)findViewById(R.id.registrarproductos_btnRegistrar);
         imagesPath= new ArrayList<String>();
+        ip=getResources().getString(R.string.ip_server);
 
     }
     private void setToolbar(){
@@ -96,10 +120,6 @@ public class Registerproducts extends AppCompatActivity {
         }, new AdapterPhotos2.OnClickListener() {
             @Override
             public void OnItemClickListener(String url, int position) {
-               // Intent intent= new Intent(getApplicationContext(),ImageViewer.class);
-                //intent.putExtra("urls",(ArrayList<String>)imagesPath);
-                //intent.putExtra("position",position);
-                //startActivity(intent);
                 SetFullImages.startViewerImages(getApplicationContext(),imagesPath,position);
             }
         });
@@ -135,7 +155,6 @@ public class Registerproducts extends AppCompatActivity {
             setImages3();
         }
     }
-
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         //adapterFotosG.getItemSelected(item);
@@ -158,5 +177,33 @@ public class Registerproducts extends AppCompatActivity {
     private void removeFotoFromRecycler(int position){
         imagesPath.remove(position);
         mAdapter.notifyItemRemoved(position);
+    }
+    private void ServiceUploadFotos(){
+        String url="http://"+ip+"/intergrami/insercciones/AddPhotos.php";
+        stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.trim().equalsIgnoreCase("registra"));
+                Toast.makeText(Registerproducts.this, "Imagenes existosas", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Registerproducts.this, "Error service", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> parametros= new HashMap<>();
+                for (int i = 0; i <imagesPath.size(); i++) {
+                    parametros.put("imagenes[]", ConvertImgString.convierteImgString(
+                            ConvertImgString.convertPathtoBitmap(imagesPath.get(i))));
+                    parametros.put("names[]","a"+i);
+                }
+                return  parametros;
+            }
+        };
+        queue.add(stringRequest);
     }
 }

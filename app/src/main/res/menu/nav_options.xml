@@ -20,6 +20,10 @@
             android:icon="@drawable/misproductos_35px"
             android:title="@string/nav_misproductos"/>
         <item
+            android:id="@+id/menu_nav_mistierras"
+            android:icon="@drawable/lands_35px"
+            android:title="@string/nav_mistierras"/>
+        <item
             android:id="@+id/menu_nav_configuracion"
             android:icon="@drawable/config_35px"
             android:title="@string/nav_configuracion"/>
@@ -27,7 +31,6 @@
             android:id="@+id/menu_nav_acercade"
             android:icon="@drawable/acercade_35px"
             android:title="@string/nav_acercade"/>
-
     </group>
     <item android:title="@string/nav_otras_opciones">
         <menu>

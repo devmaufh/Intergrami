@@ -44,7 +44,6 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
     String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
-    com.getbase.floatingactionbutton.FloatingActionButton add_producto;
     List<Productos> productos;
     public RecyclerView rvProductos;
     public RecyclerView.Adapter mAdapter;
@@ -52,6 +51,7 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
     private SharedPreferences prefs;
     private ProgressDialog progressDialog;
     private TextView texto;
+    private FloatingActionButton add_producto;
     public EnVentaFragment() {
         // Required empty public constructor
     }
@@ -73,9 +73,9 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
     }
     private void bindUI(View v){
         ip= getResources().getString(R.string.ip_server);
-        add_producto= (com.getbase.floatingactionbutton.FloatingActionButton) v.findViewById(R.id.enventa_fabaddproducto);
         productos= new ArrayList<Productos>();
         rq= Volley.newRequestQueue(v.getContext());
+        add_producto=(FloatingActionButton)v.findViewById(R.id.enventa_fbaAddProducto);
         prefs= getActivity().getSharedPreferences("datos_user", Context.MODE_PRIVATE);
         progressDialog= new ProgressDialog(v.getContext());
         texto= (TextView)v.findViewById(R.id.enventa_texto);

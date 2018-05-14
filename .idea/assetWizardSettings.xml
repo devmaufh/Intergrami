@@ -44,7 +44,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="add2" />
+                                      <entry key="outputName" value="add_image" />
                                       <entry key="theme" value="HOLO_DARK" />
                                     </map>
                                   </option>

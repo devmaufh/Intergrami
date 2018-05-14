@@ -127,6 +127,9 @@ public class Home extends AppCompatActivity implements Response.Listener<JSONObj
                         fragment = new MisProductosFragment();
                         fragmentTransaction = true;
                         break;
+                    case R.id.menu_nav_mistierras:
+                        Toast.makeText(Home.this, "Mis tierras :v", Toast.LENGTH_SHORT).show();
+                        break;
                     case R.id.menu_nav_configuracion:
                         fragment = new ConfiguracionFragment();
                         fragmentTransaction = true;

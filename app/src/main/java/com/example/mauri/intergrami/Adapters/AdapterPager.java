@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.mauri.intergrami.Fragments.EnVentaFragment;
 import com.example.mauri.intergrami.Fragments.AcercadeFragment;
+import com.example.mauri.intergrami.Fragments.VendidosFragment;
 
 public class AdapterPager  extends FragmentStatePagerAdapter{
     private int numberOfTabs;
@@ -21,7 +22,7 @@ public class AdapterPager  extends FragmentStatePagerAdapter{
             case 0:
                 return new EnVentaFragment();
             case 1:
-                return new AcercadeFragment();
+                return new VendidosFragment();
             default:
                 return null;
         }

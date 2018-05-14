@@ -39,6 +39,7 @@
     <string name="nav_configuracion">Settings</string>
     <string name="nav_cerrarSesion">Log out</string>
     <string name="nav_acercade">About...</string>
+    <string name="nav_mistierras">My lands</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -88,5 +89,8 @@
     <string name="seleccionefotos">Choose one or more pictures</string>
     <string name="eliminar">Delete</string>
     <string name="portada_foto">Set</string>
+    <string name="no_tiene_productos_vendidos">You haven sold any products yet ):</string>
+    <string name="compartir">Share</string>
+    <string name="ver_detalles_compra">See details</string>
 
 </resources>

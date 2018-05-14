@@ -8,12 +8,27 @@ public class Mis_productos {
     String id_compra;
     String monto;
     String nombre,descripcion,urlfoto;
-    public Mis_productos(String id_compra, String monto, String nombre, String descripcion,String urlfoto){
-        this.id_compra=id_compra;
-        this.monto=monto;
-        this.nombre=nombre;
-        this.descripcion=descripcion;
-        this.urlfoto=urlfoto;
+    public Mis_productos(){
+    }
+
+    public void setId_compra(String id_compra) {
+        this.id_compra = id_compra;
+    }
+
+    public void setMonto(String monto) {
+        this.monto = monto;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setUrlfoto(String urlfoto) {
+        this.urlfoto = urlfoto;
     }
 
     public String getId_compra() {

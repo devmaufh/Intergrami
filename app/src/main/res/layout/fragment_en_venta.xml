@@ -7,19 +7,11 @@
 
 
     <!-- TODO: Update blank fragment layout -->
-    <Spinner
-        android:id="@+id/enventa_spinner"
-        android:layout_gravity="top|center"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:textAlignment="center"
-        android:entries="@array/spinner_principal_fragment"/>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="30dp"
         android:id="@+id/enventa_recycler"
         android:layout_width="match_parent"
-        android:layout_height="462dp" />
+        android:layout_height="520dp" />
     <TextView
         android:id="@+id/enventa_texto"
         android:layout_width="wrap_content"
@@ -31,38 +23,17 @@
 
 
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/enventa_menufabs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/enventa_fbaAddProducto"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:fab_size="normal"
+        android:src="@drawable/add_image"
         app:fab_labelStyle="@style/Etiquetas"
         app:fab_addButtonColorNormal="@color/colorPrimary"
         app:fab_addButtonColorPressed="@color/colorAccent"
         app:fab_addButtonSize="normal"
-        app:fab_labelsPosition="left"
-        >
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/enventa_fabaddproducto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_colorPressed="@color/colorPrimary"
-            app:fab_size="mini"
-            app:fab_icon="@drawable/tomato_35px"
-            app:fab_title="@string/producto"
-            />
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/enventa_fabaddtierra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorPressed="@color/colorPrimary"
-            app:fab_colorNormal="@color/colorAccent"
-            app:fab_icon="@drawable/lands_35px"
-            app:fab_size="mini"
-            app:fab_title="@string/Tierra"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
+        app:fab_labelsPosition="left"/>
 </FrameLayout>
