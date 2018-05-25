@@ -28,6 +28,7 @@ import com.example.mauri.intergrami.Adapters.MyAdapterProducts;
 import com.example.mauri.intergrami.Models.Productos;
 import com.example.mauri.intergrami.R;
 import com.example.mauri.intergrami.Utils.PopupwindowFull;
+import com.example.mauri.intergrami.Utils.SetFullImages;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -107,9 +108,7 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
         mAdapter= new MyAdapterProductDetails(urls, R.layout.cardview_productdetails, new MyAdapterProductDetails.OnItemClickListener() {
             @Override
             public void onItemClick(String url, int position) {
-                Intent intent= new Intent(getApplicationContext(),PopupwindowFull.class);
-                intent.putExtra("urlfoto",url);
-                startActivity(intent);
+                SetFullImages.startViewerImages(getApplicationContext(),urls,position);
             }
         });
         fotos.setLayoutManager(mLayoutManager);

@@ -34,6 +34,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -53,11 +54,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Product_details extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener {
+public class Product_details extends AppCompatActivity  {
     String ip; //Ip del servidor
     RequestQueue rq;
     JsonRequest jrq;
@@ -86,12 +88,10 @@ public class Product_details extends AppCompatActivity implements Response.Liste
         setToolbar();
         bindUI();
         id_producto=getIntent().getStringExtra("id_producto");
-        //getDatosServidor(id_producto);
-        //setFotosRecycler();
-        getFotos(id_producto);
         dialog.setTitle(getResources().getString(R.string.cargando));
         dialog.show();
-
+        getDatosServidor(id_producto);
+        getFotos(id_producto);
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,74 +147,80 @@ public class Product_details extends AppCompatActivity implements Response.Liste
         boolean isImageFitToScreen;
 
         mLayoutManager= new StaggeredGridLayoutManager(3,1);
-       mAdapter= new MyAdapterProductDetails(urls, R.layout.cardview_productdetails, new MyAdapterProductDetails.OnItemClickListener() {
+         mAdapter= new MyAdapterProductDetails(urls, R.layout.cardview_productdetails, new MyAdapterProductDetails.OnItemClickListener() {
            @Override
            public void onItemClick(String url, int position) {
                SetFullImages.startViewerImages(getApplicationContext(),urls,position);
 
-           }
-       });
-       fotos.setLayoutManager(mLayoutManager);
+              }
+          });
+         fotos.setLayoutManager(mLayoutManager);
        fotos.setAdapter(mAdapter);
 
     }
     //              Servidor
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(this,"Resupuesta incorrecta", Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-
-
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        Toast.makeText(this,"Resupuesta correcta", Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-        if(foto){
-            Toast.makeText(this,"FOTOOOAOOASOASDASD", Toast.LENGTH_SHORT).show();
-            //Obtener las fotos
-            try {
-                JSONArray cast=response.getJSONArray("fotos");
-                for (int i = 0; i < cast.length(); i++) {
-                    JSONObject jo=cast.getJSONObject(i);
-                    String url="http://"+ip+jo.optString("urlfoto").replace("\\","/");
-                    urls.add(url);
-                }
-                setFotosRecycler();
-                foto=false;
-                getDatosServidor(id_producto);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-        }else{
-            try {
-                JSONArray cast=response.getJSONArray("datos");
-                JSONObject jsonObject=cast.getJSONObject(0);
-                txtTitulo.setText(jsonObject.optString("nombre"));
-                txtFecha.setText(jsonObject.optString("fecha"));
-                txtPrecio.setText(jsonObject.optString("precio"));
-                txtDescripcion.setText(jsonObject.optString("descripcion"));
-                txtNombreV.setText(jsonObject.optString("nombre_vendedor"));
-                String fotovendedor=("http://"+ip+""+jsonObject.opt("urlfoto_vendedor")).replace("\\","/");
-                Picasso.with(this).load(fotovendedor).into(foto_vendedor);
-                float calificacion=Float.parseFloat(jsonObject.optString("calificacion"));
-                calificacion_vendedor.setRating(calificacion);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     public void getDatosServidor(String id_prod){
         String url="http://"+ip+"/intergrami/vistas/detail_product.php?id_producto="+id_prod;
-        jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        jrq= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(Product_details.this, "Si responde getDatosServidor", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                try {
+                    JSONArray cast=response.getJSONArray("datos");
+                    for (int i = 0; i < cast.length(); i++) {
+                        JSONObject obj= cast.getJSONObject(i);
+                        txtTitulo.setText(obj.optString("nombre"));
+                        txtFecha.setText(obj.optString("fecha"));
+                        txtPrecio.setText(obj.optString("precio"));
+                        txtDescripcion.setText(obj.optString("descripcion"));
+                        txtNombreV.setText(obj.optString("nombre_vendedor"));
+                        String fotovendedor=("http://"+ip+""+obj.opt("urlfoto_vendedor")).replace("\\","/");
+                        Picasso.with(getApplicationContext()).load(fotovendedor).into(foto_vendedor);
+                        float calificacion=Float.parseFloat(obj.optString("calificacion"));
+                        calificacion_vendedor.setRating(calificacion);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Product_details.this, "No responde getDatosServidor", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
+            }
+        });
         rq.add(jrq);
     }
     public void getFotos(String id_prod){
-        String url="http://"+ip+"/intergrami/vistas/fotos_productos.php?id_producto="+id_prod;
-        jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        String url="http://"+ip+"/intergrami/vistas/fotos_productos.php?id_producto="+id_prod;//+id_prod;
+        jrq= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray cast=response.getJSONArray("fotos");
+                    for (int i = 0; i < cast.length(); i++) {
+                        JSONObject jo=cast.getJSONObject(i);
+                        String url="http://"+ip+jo.optString("urlfoto").replace("\\","/");
+                        urls.add(url);
+                    }
+                    setFotosRecycler();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Product_details.this, "NOOOOOOO", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         rq.add(jrq);
     }
     private void animacion(){

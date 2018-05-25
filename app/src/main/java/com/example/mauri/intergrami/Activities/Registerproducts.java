@@ -1,8 +1,13 @@
 package com.example.mauri.intergrami.Activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +26,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.mauri.intergrami.Adapters.AdapterPhotos2;
 import com.example.mauri.intergrami.R;
 import com.example.mauri.intergrami.Utils.ConvertImgString;
 import com.example.mauri.intergrami.Utils.SetFullImages;
+import com.example.mauri.intergrami.Utils.UploadImages;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +56,10 @@ public class Registerproducts extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     FloatingActionButton fbaAddPhotos;
     Button btnRegistrar;
+    List<Urlinfo>namesPhotos;
+
+    private SharedPreferences prefs;
+    String id_user;
     //For image Selection
     int PICK_IMAGE_MULTIPLE = 1;
     @Override
@@ -57,10 +69,11 @@ public class Registerproducts extends AppCompatActivity {
         bindUI();
         setToolbar();
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View view) {
                 if(imagesPath.size()>0){
-                    ServiceUploadFotos();
+                    //ServiceUploadFotos(imagesPath.get(0));
+                    UploadAllImages();
                 }
             }
         });
@@ -77,7 +90,10 @@ public class Registerproducts extends AppCompatActivity {
         btnRegistrar=(Button)findViewById(R.id.registrarproductos_btnRegistrar);
         imagesPath= new ArrayList<String>();
         ip=getResources().getString(R.string.ip_server);
-
+        queue= Volley.newRequestQueue(getApplicationContext());
+        prefs=getSharedPreferences("datos_user", Context.MODE_PRIVATE);
+        id_user=prefs.getString("id_user","'null'");
+        namesPhotos= new ArrayList<Urlinfo>();
     }
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.registroproductos_toolbar); //Muestra el toolbar como ActionBar
@@ -178,32 +194,77 @@ public class Registerproducts extends AppCompatActivity {
         imagesPath.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
-    private void ServiceUploadFotos(){
-        String url="http://"+ip+"/intergrami/insercciones/AddPhotos.php";
-        stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+    private void UploadAllImages(){
+        for (int i = 0; i < imagesPath.size(); i++) {
+            String nameImage=UploadImages.randomName(id_user);
+            UploadImages.ServiceUploadFotos(ip,
+                    "AddPhotos.php",
+                    imagesPath.get(i),
+                    nameImage,
+                    Registerproducts.this,
+                    (i+1));
+            namesPhotos.add(new Urlinfo(nameImage,false));
+        }
+    }
+    //                                                    *****NOTA******
+    //                                          Primero insertar producto en tabla Productos
+    //                                       Después insertar las url de las fotos en tabla fotos_productos con id currval(seq_id_foto_productos_))
+    private void insertNamesPhotos(){
+        int counter=0;
+        do{
+            if(counter==namesPhotos.size())
+            {
+                break;
+            }
+            else{
+                for (int i = 0; i < namesPhotos.size(); i++) {
+                    if(!namesPhotos.get(i).isUpload()){
+                        if(ServiceFotosProducots(namesPhotos.get(i).getName()))
+                        {
+                            namesPhotos.get(i).setUpload(true);
+                            counter++;
+                      }
+                    }
+               }
+             }
+        }
+        while(counter==namesPhotos.size());
+    }
+    private boolean ServiceFotosProducots(String name) {
+        final boolean[] flag = {false};
+        String url="";
+        StringRequest request= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.trim().equalsIgnoreCase("registra"));
-                Toast.makeText(Registerproducts.this, "Imagenes existosas", Toast.LENGTH_SHORT).show();
+                if(response.trim().equalsIgnoreCase("true"))
+                    flag[0] =true;
+                else flag[0]=true;
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Registerproducts.this, "Error service", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registerproducts.this, "Error en respuesta del servidor", Toast.LENGTH_SHORT).show();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+        });
+        return flag[0];
+    }
 
-                Map<String,String> parametros= new HashMap<>();
-                for (int i = 0; i <imagesPath.size(); i++) {
-                    parametros.put("imagenes[]", ConvertImgString.convierteImgString(
-                            ConvertImgString.convertPathtoBitmap(imagesPath.get(i))));
-                    parametros.put("names[]","a"+i);
-                }
-                return  parametros;
-            }
-        };
-        queue.add(stringRequest);
+    public class Urlinfo{
+        private String  name;
+        private boolean isUpload;
+        public Urlinfo(String name, boolean isUpload) {
+            this.name =name;
+            this.isUpload = isUpload;
+        }
+        public boolean isUpload() {
+            return isUpload;
+        }
+        public String  getName() {
+            return name;
+        }
+
+        public void setUpload(boolean upload) {
+            isUpload = upload;
+        }
     }
 }

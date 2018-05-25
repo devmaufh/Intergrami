@@ -11,9 +11,7 @@
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:elevation="15dp"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="4dp"
-    >
-
+    app:cardCornerRadius="4dp">
     <ImageView
         android:id="@+id/misproductos_cardview_ivFoto"
         android:layout_width="match_parent"
@@ -30,7 +28,7 @@
         android:textStyle="bold"
         android:textSize="25dp"
         android:gravity="top|center"
-        android:text="Semilla de girasol" />
+        android:text="Semilla de girasol"/>
     <TextView
         android:id="@+id/misproductos_cardview_Folio"
         android:layout_width="match_parent"
@@ -51,7 +49,5 @@
         android:textStyle="normal"
         android:textColor="#d46461"
         android:gravity="right"
-        android:text="Semilla de girasol" />
-
-
+        android:text="Semilla de girasol"/>
 </android.support.v7.widget.CardView>
