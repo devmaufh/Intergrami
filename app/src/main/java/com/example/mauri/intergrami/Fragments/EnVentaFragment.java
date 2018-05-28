@@ -85,12 +85,12 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
 
     }
     private void setProductos(final View v) {
-        Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
         mLayoutManager= new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterProducts(productos, R.layout.cardview_productos, new MyAdapterProducts.OnItemClickListener() {
             @Override
             public void onItemClick(Productos producto, int position) {
-                Toast.makeText(getContext(), "CLICK MIS productos NO VENDIDOS JIJIJI", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "CLICK MIS productos NO VENDIDOS JIJIJI", Toast.LENGTH_SHORT).show();
             }
         });
         rvProductos.setLayoutManager(mLayoutManager);
@@ -108,7 +108,7 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
     public void onResponse(JSONObject response) {
         texto.setVisibility(View.INVISIBLE);
         progressDialog.dismiss();
-        Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
         //Cast de array Json
         try {
             JSONArray cast= response.getJSONArray("productos");
@@ -123,7 +123,7 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
                 p.setUrlFoto("http://"+ip+ur);
                 p.setFecha(jo.optString("fecha"));
                 productos.add(p);
-                Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
             }
             setProductos(getView());
         } catch (JSONException e) {
@@ -136,10 +136,10 @@ public class EnVentaFragment extends Fragment implements Response.Listener<JSONO
         progressDialog.setMessage(getResources().getText(R.string.cargando));
         progressDialog.show();
         String id_user=prefs.getString("id_user","'null'");
-        Toast.makeText(getContext(), "ID del user: "+id_user, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "ID del user: "+id_user, Toast.LENGTH_SHORT).show();
         String url="http://"+ip+"/intergrami/vistas/vista_mis_productos.php?id_user="+id_user;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
-        Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(),"Buscando mis productos",Toast.LENGTH_LONG).show();
     }
 }

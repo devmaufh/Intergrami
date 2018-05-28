@@ -15,7 +15,6 @@ public class AdapterPager  extends FragmentStatePagerAdapter{
         super(fm);
         this.numberOfTabs=numberOfTabs;
     }
-
     @Override
     public Fragment getItem(int position) {
         switch (position){
@@ -27,7 +26,6 @@ public class AdapterPager  extends FragmentStatePagerAdapter{
                 return null;
         }
     }
-
     @Override
     public int getCount() {
         return numberOfTabs;

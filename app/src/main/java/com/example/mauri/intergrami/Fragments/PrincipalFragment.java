@@ -106,7 +106,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
 
 
     private void setProductos(final View v) {
-        Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
         mLayoutManager= new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterProducts(productos, R.layout.cardview_productos, new MyAdapterProducts.OnItemClickListener() {
             @Override
@@ -137,13 +137,13 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
     @Override
     public void onErrorResponse(VolleyError error) {
         progressDialog.dismiss();
-        Toast.makeText(getContext(),"Error en respuesta del servidor",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"Server not found",Toast.LENGTH_SHORT).show();
 
     }
     @Override
     public void onResponse(JSONObject response) {
         progressDialog.dismiss();
-        Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
         //Cast de array Json
         try {
             JSONArray cast= response.getJSONArray("productos");
@@ -158,7 +158,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
                 p.setUrlFoto("http://"+ip+ur);
                 p.setFecha(jo.optString("fecha"));
                 productos.add(p);
-                Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
             }
             setProductos(getView());
         } catch (JSONException e) {
@@ -176,7 +176,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
                 t.setTamaño(jo.optString("tamaño"));
                 t.setUrlfoto("http://"+ip+ur);
                 tierras.add(t);
-                Toast.makeText(getContext(), t.getId_tierra()+t.getTamaño(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), t.getId_tierra()+t.getTamaño(), Toast.LENGTH_SHORT).show();
             }
             setTierras(getView());
         } catch (JSONException e) {
@@ -187,11 +187,11 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         progressDialog.setMessage(getResources().getText(R.string.cargando));
         progressDialog.show();
         String id_user=prefs.getString("id_user","'null'");
-        Toast.makeText(getContext(), "ID del user: "+id_user, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "ID del user: "+id_user, Toast.LENGTH_SHORT).show();
         String url="http://"+ip+"/intergrami/vistas/vista_productos.php?id_user="+id_user;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
-        Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
     }
     private void Service_mistierras(){
         String id_user=prefs.getString("id_user","'null'");
@@ -200,7 +200,7 @@ public class PrincipalFragment extends Fragment implements Response.Listener<JSO
         String url="http://"+ip+"/intergrami/vistas/vista_tierras.php?id_user="+id_user;
         jrq= new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rq.add(jrq);
-        Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
+       // Toast.makeText(getContext(),"Ejecutando webService",Toast.LENGTH_LONG).show();
     }
     private void animacion(){
         ((Activity) getContext()).overridePendingTransition(R.anim.goup,R.anim.godown);

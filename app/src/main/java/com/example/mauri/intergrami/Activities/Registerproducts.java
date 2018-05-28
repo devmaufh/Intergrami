@@ -9,12 +9,14 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +48,7 @@ import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 public class Registerproducts extends AppCompatActivity {
     String ip;
     int auxiliarForRemovePhoto;
+    int portada;
     StringRequest stringRequest;
     RequestQueue queue;
     List<String> imagesPath;
@@ -72,12 +75,43 @@ public class Registerproducts extends AppCompatActivity {
                 @Override
             public void onClick(View view) {
                 if(imagesPath.size()>0){
-                    //ServiceUploadFotos(imagesPath.get(0));
-                    UploadAllImages();
+                    String name=edNombre.getText().toString();
+                    String descripcion=edDescripcion.getText().toString();
+                    String precio=edPrecio.getText().toString();
+                    if(validatodo(name,descripcion,precio,imagesPath.size())){
+                        registraproducto(name,descripcion,precio,id_user);
+                        UploadAllImages();
+                        //Toast.makeText(getApplicationContext(),"PORTADA: "+l.get(portada),Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
+
+    private boolean registraproducto(String name, String descripcion, String precio, String id_user) {
+        String url="http://"+ip+"/intergrami/insercciones/inserta_productos.php?nombre="+name +
+                "&precio="+precio +
+                "&descripcion="+descripcion +
+                "&id_user="+id_user+
+                "&id_type=1";
+        final boolean[] flag = {false};
+        StringRequest request= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.trim().equalsIgnoreCase("SI"))
+                    flag[0] =true;
+                else flag[0]=false;
+                }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                flag[0]=false;
+            }
+        });
+        queue.add(request);
+        return flag[0];
+    }
+
     private void bindUI(){
         tfbNombreproducto=(TextFieldBoxes)findViewById(R.id.registroproductos_textfieldboxes_nombreproducto);
         tfbDescripcionproducto=(TextFieldBoxes)findViewById(R.id.registroproductos_textfieldboxes_descripcion);
@@ -131,7 +165,7 @@ public class Registerproducts extends AppCompatActivity {
         mAdapter= new AdapterPhotos2(imagesPath, R.layout.cardview_fotos, new AdapterPhotos2.LongClickListener() {
             @Override
             public void onItemLongClick(String url, int position) {
-                auxiliarForRemovePhoto = position;
+                portada=auxiliarForRemovePhoto = position;
             }
         }, new AdapterPhotos2.OnClickListener() {
             @Override
@@ -154,62 +188,66 @@ public class Registerproducts extends AppCompatActivity {
                     int count = data.getClipData().getItemCount(); //evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
                     for(int i = 0; i < count; i++) {
                         Uri imageUri = data.getClipData().getItemAt(i).getUri();
-                        Toast.makeText(this, "URI:  "+imageUri.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, "URI:  "+imageUri.toString(), Toast.LENGTH_SHORT).show();
                         imagesPath.add(imageUri.toString());
                     }
-                    //do something with the image (save it to some directory or whatever you need to do with it here)
                 }
             } else if(data.getData() != null) {
                 String imagePath = data.getData().getPath();
-                Toast.makeText(this, "PATH: "+imagePath, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "PATH: "+imagePath, Toast.LENGTH_SHORT).show();
                 imagesPath.add(imagePath.toString());
+                //namesPhotos.add(new Urlinfo(UploadImages.randomName(id_user),false));//Change
+
             }
         }
         if(imagesPath.size()>0) {
-            //setImagesOnRecycler();
-            //newRecycler();
             setImages3();
         }
     }
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        //adapterFotosG.getItemSelected(item);
-        //mAdapter.get
         switch (item.getItemId()) {
             case R.id.menufoto_eliminar:
                 Toast.makeText(this, "Eliminar", Toast.LENGTH_SHORT).show();
                 removeFotoFromRecycler(auxiliarForRemovePhoto);
                 break;
             case R.id.menufoto_portada:
-                Toast.makeText(this, "Portada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "name: "+namesPhotos.get(portada).getName(), Toast.LENGTH_SHORT).show();
                 break;
             case android.R.id.home:
                 finish();
                 break;
         }
-        //Toast.makeText(this, "Seleccionó algo jijiji :v", Toast.LENGTH_SHORT).show();
         return super.onContextItemSelected(item);
     }
     private void removeFotoFromRecycler(int position){
         imagesPath.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
+    List<String> l= new ArrayList<String>();
+
     private void UploadAllImages(){
         for (int i = 0; i < imagesPath.size(); i++) {
             String nameImage=UploadImages.randomName(id_user);
             UploadImages.ServiceUploadFotos(ip,
                     "AddPhotos.php",
                     imagesPath.get(i),
-                    nameImage,
+                    nameImage,//namesPhotos.get(i).getName(),
                     Registerproducts.this,
                     (i+1));
-            namesPhotos.add(new Urlinfo(nameImage,false));
+            //l.add(nameImage);
+            //Toast.makeText(this, l.get(i), Toast.LENGTH_SHORT).show();
+           // ServiceFotosProducots(l.get(i));
+           // l.add(nameImage);
+            ServiceFotosProducots(nameImage);
+            //Toast.makeText(this, "name: "+namesPhotos.get(portada).getName(), Toast.LENGTH_SHORT).show();
         }
+       // insertNamesPhotos();
+        //for (int i = 0; i < l.size(); i++) {
+          //  ServiceFotosProducots(l.get(i));
+        //}
     }
-    //                                                    *****NOTA******
-    //                                          Primero insertar producto en tabla Productos
-    //                                       Después insertar las url de las fotos en tabla fotos_productos con id currval(seq_id_foto_productos_))
-    private void insertNamesPhotos(){
+   private void insertNamesPhotos(){
         int counter=0;
         do{
             if(counter==namesPhotos.size())
@@ -222,6 +260,7 @@ public class Registerproducts extends AppCompatActivity {
                         if(ServiceFotosProducots(namesPhotos.get(i).getName()))
                         {
                             namesPhotos.get(i).setUpload(true);
+                            Toast.makeText(this, "Counter: "+counter, Toast.LENGTH_SHORT).show();
                             counter++;
                       }
                     }
@@ -232,10 +271,11 @@ public class Registerproducts extends AppCompatActivity {
     }
     private boolean ServiceFotosProducots(String name) {
         final boolean[] flag = {false};
-        String url="";
+        String url="http://"+ip+"/intergrami/insercciones/inserta_nombres_photos.php?urlfoto="+name+"&id_user="+id_user;
         StringRequest request= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(Registerproducts.this, response, Toast.LENGTH_SHORT).show();
                 if(response.trim().equalsIgnoreCase("true"))
                     flag[0] =true;
                 else flag[0]=true;
@@ -243,12 +283,43 @@ public class Registerproducts extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Registerproducts.this, "Error en respuesta del servidor", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registerproducts.this, "Error server", Toast.LENGTH_SHORT).show();
             }
         });
+        queue.add(request);
         return flag[0];
     }
+    private boolean validatodo(String name,String descripcion, String precio, int counterimages){
+        if(!TextUtils.isEmpty(name))
+        {
+            if(!TextUtils.isEmpty(descripcion))
+            {
+                if (!TextUtils.isEmpty(precio))
+                {
+                    if(counterimages>0)
+                    {
+                        return true;
+                    }else
+                    {
+                        Toast.makeText(this, getResources().getString(R.string.debe_agregar_minimo_una_foto), Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }else
+                {
+                    Toast.makeText(this, getResources().getString(R.string.debe_agregar_precio), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            }else
+            {
+                Toast.makeText(this, getResources().getString(R.string.debe_agregar_descripcion), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }else{
+            Toast.makeText(this, getResources().getString(R.string.debe_agregar_untitulo), Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
+    }
     public class Urlinfo{
         private String  name;
         private boolean isUpload;
@@ -268,3 +339,5 @@ public class Registerproducts extends AppCompatActivity {
         }
     }
 }
+//Update: Actualizar portada de foto con:
+//                      Select max(id_producto) from productos where id_user=n;

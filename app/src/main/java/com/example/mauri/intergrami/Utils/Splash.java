@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.example.mauri.intergrami.Activities.Home;
+import com.example.mauri.intergrami.Activities.StartActivity;
 import com.example.mauri.intergrami.Activities.login;
 import com.example.mauri.intergrami.R;
 
@@ -24,19 +25,21 @@ public class Splash extends AppCompatActivity {
         prefs=getSharedPreferences("datos_user", Context.MODE_PRIVATE);
         Intent intentLogin= new Intent(this,login.class);
         Intent intentHome= new Intent(this, Home.class);
+        Intent intentTuto= new Intent(this, StartActivity.class);
 
 
         if(isNetDisponible()&&isOnlineNet()){
-            Toast.makeText(this, "SI HAY INTERNET JIJIJI", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "SI HAY INTERNET JIJIJI", Toast.LENGTH_SHORT).show();
         if(!TextUtils.isEmpty(prefs.getString("correo",""))&&
                 !TextUtils.isEmpty(prefs.getString("password",""))){
             startActivity(intentHome);
         }else{
-            startActivity(intentLogin);
+            //startActivity(intentLogin); //Inicia login
+            startActivity(intentTuto);  //Inicia tutorial
         }
         finish();
         }else{
-            Toast.makeText(this, "Error  de red, no hay jijijiji", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You need internet connection", Toast.LENGTH_SHORT).show();
             //Mandar un cuadrod de dialogo en este bloque!
             //
             finish();

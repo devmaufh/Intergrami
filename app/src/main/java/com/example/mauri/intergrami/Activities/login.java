@@ -166,7 +166,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             String password=jsonObject.optString("password");
             String urlfoto=ip+jsonObject.optString("urlfoto");
             String telefono=jsonObject.optString("telefono");
-            Toast.makeText(this,urlfoto,Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,urlfoto,Toast.LENGTH_LONG).show();
 
             SaveOnPreferences(id_user,nombre,curp,direccion,correo,password,urlfoto,telefono);
 

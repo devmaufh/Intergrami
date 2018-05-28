@@ -76,7 +76,7 @@ public class ComprasFragment extends Fragment {
                         miproducto.setId_compra(jsonObject.getString("id_compra"));
                         miproducto.setNombre(jsonObject.getString("nombre"));
                         miproducto.setUrlfoto(("http://"+ip+jsonObject.getString("urlfoto")).replace("\\","/"));
-                        Toast.makeText(getContext(), miproducto.getUrlfoto(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(), miproducto.getUrlfoto(), Toast.LENGTH_SHORT).show();
                         mis_productosList.add(miproducto);
                     }
                     setItemsRecycler(getView());
@@ -89,7 +89,7 @@ public class ComprasFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(getContext(), "Error obteniendo productos jiji", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(jrq);

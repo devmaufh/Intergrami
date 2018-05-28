@@ -79,7 +79,7 @@ public class VendidosFragment extends Fragment{
                 texto.setVisibility(View.INVISIBLE);
                 progressDialog.dismiss();
 
-                Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Respuesta correcta del servidor", Toast.LENGTH_SHORT).show();
                 //Cast de array Json
                 try {
                     JSONArray cast= response.getJSONArray("productos");
@@ -94,7 +94,7 @@ public class VendidosFragment extends Fragment{
                         p.setUrlFoto("http://"+ip+ur);
                         p.setFecha(jo.optString("fecha"));
                         productos.add(p);
-                        Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getContext(),p.getId_product()+p.getNombre()+p.getUrlFoto(),Toast.LENGTH_SHORT).show();
                     }setProductos(getView());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -113,12 +113,12 @@ public class VendidosFragment extends Fragment{
         queue.add(jrq);
     }
     private void setProductos(final View v) {
-        Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
+       // Toast.makeText(getContext(), "SEtting productrs", Toast.LENGTH_LONG).show();
         mLayoutManager= new LinearLayoutManager(v.getContext());
         mAdapter= new MyAdapterProducts(productos, R.layout.cardview_productos, new MyAdapterProducts.OnItemClickListener() {
             @Override
             public void onItemClick(Productos producto, int position) {
-                Toast.makeText(getContext(), "CLICK MIS productos NO VENDIDOS JIJIJI", Toast.LENGTH_SHORT).show();
+       //         Toast.makeText(getContext(), "CLICK MIS productos NO VENDIDOS JIJIJI", Toast.LENGTH_SHORT).show();
             }
         });
         rvProductos.setLayoutManager(mLayoutManager);

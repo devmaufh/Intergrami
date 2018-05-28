@@ -8,8 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/fondo7" />
-
+        android:src="@drawable/back_degrade1" />
     <TextView
         android:id="@+id/NavProfile"
         android:layout_width="wrap_content"
@@ -17,7 +16,7 @@
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
-        android:textColor="#FFF"
+        android:textColor="#838282"
         android:layout_gravity="bottom"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"/>

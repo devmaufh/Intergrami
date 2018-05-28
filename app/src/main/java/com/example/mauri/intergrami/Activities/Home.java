@@ -228,7 +228,6 @@ public class Home extends AppCompatActivity implements Response.Listener<JSONObj
 
     @Override
     public void onErrorResponse(VolleyError error) {
-       // Toast.makeText(this, "Sin notificaciones jijiji", Toast.LENGTH_SHORT).show();
     }
 
     @Override

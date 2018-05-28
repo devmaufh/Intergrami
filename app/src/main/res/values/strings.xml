@@ -97,4 +97,13 @@
     <string name="no_tiene_productos_vendidos">Aún no ha vendido ningún producto ):</string>
     <string name="compartir">Compartir</string>
 
+
+    <string name="desliza_para_continuar">Desliza para continuar</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="intergrami_es">Intergrami es el lugar donde podrás comprar y vender productos agrícolas, además de poder rentar tierras si lo que te gusta es cultivar.</string>
+    <string name="Continuar">Continuar</string>
+    <string name="debe_agregar_minimo_una_foto">Debe agregar minimo 1 foto</string>
+    <string name="debe_agregar_precio">Debe agregar precio al producto</string>
+    <string name="debe_agregar_descripcion">Debe agregar una descripción al producto</string>
+    <string name="debe_agregar_untitulo">Debe ponerle nombre al producto</string>
 </resources>

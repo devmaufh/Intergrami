@@ -93,4 +93,15 @@
     <string name="compartir">Share</string>
     <string name="ver_detalles_compra">See details</string>
 
+
+    <string name="desliza_para_continuar">Swipe to continue</string>
+    <string name="bienvenido">Welcome</string>
+    <string name="intergrami_es">Intergrami is the place where you can buy and sell agricultural products, besides being able to rent land if what you like is to cultivate.</string>
+
+    <string name="Continuar">Continue</string>
+    <string name="debe_agregar_minimo_una_foto">Debe agregar minimo 1 foto</string>
+    <string name="debe_agregar_precio">Debe agregar precio al producto</string>
+    <string name="debe_agregar_descripcion">Debe agregar una descripción al producto</string>
+    <string name="debe_agregar_untitulo">Debe ponerle nombre al producto</string>
+
 </resources>

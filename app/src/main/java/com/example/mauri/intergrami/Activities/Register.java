@@ -192,8 +192,8 @@ public class Register extends AppCompatActivity {
                         .decodeFile(imgDecodableString));
 
             } else {
-                Toast.makeText(this, getResources().getString(R.string.nombre),//Modificar String
-                        Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, getResources().getString(R.string.nombre),//Modificar String
+                  //      Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(this,getResources().getString(R.string.nombre), Toast.LENGTH_LONG)//Modificar string

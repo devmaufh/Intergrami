@@ -73,12 +73,12 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
         setTitle(getResources().getString(R.string.detalles));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_name);//Icono de la hamburguesa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Toast.makeText(this,getIntent().getStringExtra("id_tierra"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,getIntent().getStringExtra("id_tierra"),Toast.LENGTH_SHORT).show();
     }
     private void binUI(){
         setToolbar();
         id_tierra=getIntent().getStringExtra("id_tierra");
-        Toast.makeText(this, id_tierra, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, id_tierra, Toast.LENGTH_SHORT).show();
         ip= getResources().getString(R.string.ip_server);
         rq= Volley.newRequestQueue(getApplicationContext());
         progressDialog= new ProgressDialog(this);
@@ -97,7 +97,7 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case android.R.id.home:
-                Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
+               // Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
                 animacion();
                 finish();
         }
@@ -119,7 +119,7 @@ public class tierra_details extends AppCompatActivity implements Response.Listen
     @Override
     public void onErrorResponse(VolleyError error) {
         progressDialog.dismiss();
-        Toast.makeText(this, "Error en respuesta del server", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error server not found", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -28,7 +28,7 @@ public class AdapterPhotos2 extends RecyclerView.Adapter<AdapterPhotos2.ViewHold
         this.onClickListener=listener;
     }
     public void getItemSelected(MenuItem item){
-        Toast.makeText(context,item.getTitle(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,item.getTitle(), Toast.LENGTH_SHORT).show();
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

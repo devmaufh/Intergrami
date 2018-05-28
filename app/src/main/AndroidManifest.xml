@@ -43,12 +43,16 @@
         <activity
             android:name=".Utils.PopupwindowFull"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".Activities.tierra_details"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".Activities.Registerproducts"
-            android:configChanges="orientation|screenSize"/>
-        <activity android:name=".Activities.ImageViewer"
-            android:configChanges="orientation|screenSize"></activity>
+        <activity
+            android:name=".Activities.tierra_details"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".Activities.Registerproducts"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".Activities.ImageViewer"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".Activities.StartActivity"></activity>
     </application>
 
 </manifest>

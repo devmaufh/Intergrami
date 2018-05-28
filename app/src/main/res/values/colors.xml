@@ -5,6 +5,12 @@
     <color name="colorAccent">#FF9800</color>
     <color name="negro_semitransparente">#B2000000</color>
     <color name="white">#fafafa</color>
+
+    <color name="verde_seco">#51820C</color>
+    <color name="verde_menos_seco">#5FA307</color>
+    <color name="dorado">#E2B910</color>
+    <color name="amarillo_primary">#FFC018</color>
+    <color name="dorado_cool">#BFA330</color>
 </resources>
 <!--
 

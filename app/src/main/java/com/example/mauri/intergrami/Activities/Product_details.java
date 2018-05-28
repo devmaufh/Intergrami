@@ -95,7 +95,7 @@ public class Product_details extends AppCompatActivity  {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Product_details.this, "ClickCompras", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Product_details.this, "ClickCompras", Toast.LENGTH_SHORT).show();
                 id_user=prefs.getString("id_user","'null'");
                 monto=txtPrecio.getText().toString();
                 confirmaCompra();
@@ -113,14 +113,14 @@ public class Product_details extends AppCompatActivity  {
         setTitle(getResources().getString(R.string.detalles));
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_name);//Icono de la hamburguesa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Toast.makeText(this,getIntent().getStringExtra("id_producto"),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,getIntent().getStringExtra("id_producto"),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case android.R.id.home:
-                Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
+               // Toast.makeText(this,"BAck", Toast.LENGTH_LONG).show();
                 animacion();
                 finish();
         }
@@ -164,7 +164,7 @@ public class Product_details extends AppCompatActivity  {
         jrq= new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(Product_details.this, "Si responde getDatosServidor", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(Product_details.this, "Si responde getDatosServidor", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 try {
                     JSONArray cast=response.getJSONArray("datos");
@@ -189,7 +189,7 @@ public class Product_details extends AppCompatActivity  {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Product_details.this, "No responde getDatosServidor", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Product_details.this, "Error con servidor", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
 
             }
@@ -217,7 +217,7 @@ public class Product_details extends AppCompatActivity  {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Product_details.this, "NOOOOOOO", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Product_details.this, "Error con servidor \nNOT FOUND", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -233,7 +233,7 @@ public class Product_details extends AppCompatActivity  {
         StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(Product_details.this, "Response: "+response, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Product_details.this, "Response: "+response, Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
