@@ -1,7 +1,7 @@
 <resources>
-    <string name="ip_server">192.168.1.73</string>
+    <string name="ip_server">192.168.1.125</string>
     <!--- Login-->
-    <string name="app_name">Intergrami</string>
+    <string name="app_name">Capital Fresco</string>
     <string name="register">Registro</string>
     <string name="Login_edCorreo">Correo</string>
     <string name="Login_btnIniciaSesion">Iniciar sesión</string>
@@ -100,7 +100,7 @@
 
     <string name="desliza_para_continuar">Desliza para continuar</string>
     <string name="bienvenido">Bienvenido</string>
-    <string name="intergrami_es">Intergrami es el lugar donde podrás comprar y vender productos agrícolas, además de poder rentar tierras si lo que te gusta es cultivar.</string>
+    <string name="intergrami_es">Capital Fresco es el lugar donde podrás comprar y vender productos agrícolas, además de poder rentar tierras si lo que te gusta es cultivar.</string>
     <string name="Continuar">Continuar</string>
     <string name="debe_agregar_minimo_una_foto">Debe agregar minimo 1 foto</string>
     <string name="debe_agregar_precio">Debe agregar precio al producto</string>

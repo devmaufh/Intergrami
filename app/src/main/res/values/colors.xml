@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFC107</color>
-    <color name="colorPrimaryDark">#ffa000</color>
-    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimary">#006664</color>
+    <color name="colorPrimaryDark">#005250</color>
+    <color name="colorAccent">#00ABA5</color>
     <color name="negro_semitransparente">#B2000000</color>
     <color name="white">#fafafa</color>
 
@@ -11,6 +11,27 @@
     <color name="dorado">#E2B910</color>
     <color name="amarillo_primary">#FFC018</color>
     <color name="dorado_cool">#BFA330</color>
+
+    <!-- Colores login y generales -->
+    <color name="grisoscuro">#636363</color>
+    <color name="grisclaro">#E3E3E3</color>
+    <color name="letras_btn_blancas">#FBFCFC</color>
+    <color name="blanco">#ffffff</color>
+    <color name="negro">#000000</color>
+
+    <!-- Colores Registro -->
+    <color name="b_edit">#CEDDDD</color>
+    <color name="b_fondo">#C31DD3CE</color>
+
+    <!-- Colores Cardview -->
+    <color name="letras_card">#009E93</color>
+    <color name="letras_reloj">#11B1AB</color>
+
+    <!-- Colores app CF -->
+
+    <color name="colorPrimaryCF">#006664</color>
+    <color name="colorPrimaryDarkCF">#005250</color>
+    <color name="colorAccentCF">#00ABA5</color>
 </resources>
 <!--
 

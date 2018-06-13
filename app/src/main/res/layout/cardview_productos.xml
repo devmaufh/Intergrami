@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="37dp"
         android:layout_height="188dp"
-        android:src="@drawable/finalfinal"
+        android:src="@drawable/logo"
         android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/productos_cardView_tvNombre"

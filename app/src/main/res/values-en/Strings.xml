@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ip_server">192.168.1.73</string>
+    <string name="ip_server">192.168.1.125</string>
     <string name="detalles">Details</string>
     <!--- Login-->
     <string name="app_name">Intergrami</string>

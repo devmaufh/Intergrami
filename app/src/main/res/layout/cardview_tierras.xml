@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_gravity="top"
         android:layout_height="230dp"
-        android:src="@drawable/finalfinal"
+        android:src="@drawable/logo"
         android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/tierras_cardview_edTamaño"

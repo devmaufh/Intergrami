@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dorado_cool"
+    android:background="@color/colorPrimary"
     tools:context=".Fragments.start2Fragment">
 
     <TextView
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/dorado_cool"
+        android:background="@color/colorPrimary"
         android:text="@string/Continuar"
         android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"

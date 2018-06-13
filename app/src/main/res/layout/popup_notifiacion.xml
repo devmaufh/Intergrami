@@ -67,7 +67,7 @@
             android:layout_height="150dp"
             android:layout_gravity="bottom"
             android:scaleType="centerCrop"
-            android:src="@drawable/finalfinal" />
+            android:src="@drawable/logo" />
 
     </android.support.v7.widget.CardView>
 

@@ -1,5 +1,6 @@
 package com.example.mauri.intergrami.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -89,6 +90,7 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
             }
         });
     }
+    @SuppressLint("WrongViewCast")
     public void bindUI(){
         ip= getResources().getString(R.string.ip_server);
         btn_log=(Button)findViewById(R.id.Login_btnLogin);
@@ -231,9 +233,9 @@ public class login extends AppCompatActivity implements Response.Listener<JSONOb
         }
     }
     private void setToolbar(){
-        Toolbar toolbar= (Toolbar)findViewById(R.id.activity_login_toolbar); //Muestra el toolbar como ActionBar
-        setSupportActionBar(toolbar);//Muestra titulo de toolbar
-        toolbar.setTitle("Intergrami");
+        //Toolbar toolbar= (Toolbar)findViewById(R.id.activity_login_toolbar); //Muestra el toolbar como ActionBar
+        //setSupportActionBar(toolbar);//Muestra titulo de toolbar
+        //toolbar.setTitle("Intergrami");
 
     }
     ///////////////////////////////////////////////////777
