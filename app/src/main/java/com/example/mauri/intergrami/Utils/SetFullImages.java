@@ -11,6 +11,9 @@ import java.util.List;
 public class SetFullImages {
     public static void startViewerImages(Context c, List<String> imagesPath,int position){
         Intent intent= new Intent(c,ImageViewer.class);
+        //New line
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //
         intent.putExtra("urls",(ArrayList<String>)imagesPath);
         intent.putExtra("position",position);
         c.startActivity(intent);

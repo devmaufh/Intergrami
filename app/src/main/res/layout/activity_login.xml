@@ -1,142 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blanco">
-
-    <ScrollView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="520dp">
-
-            <EditText
-                android:id="@+id/login_textfieldboxes_correo"
-                android:layout_width="345dp"
-                android:layout_height="40dp"
-                android:layout_below="@+id/textView6"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:background="@drawable/obj_redondo"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="alguien@email.com"
-                android:inputType="text|textEmailAddress"
-                android:password="false"
-                android:textColorHint="@color/grisoscuro" />
-
-            <EditText
-                android:id="@+id/login_textfieldboxes_contraseña"
-                android:layout_width="345dp"
-                android:layout_height="40dp"
-                android:layout_alignStart="@+id/login_textfieldboxes_correo"
-                android:layout_below="@+id/textView7"
-                android:layout_gravity="center"
-                android:layout_marginTop="13dp"
-                android:background="@drawable/obj_redondo"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="Contraseña"
-                android:inputType="textPersonName|textPassword"
-                android:password="true"
-                android:textColorHint="@color/grisoscuro" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/login_textfieldboxes_correo"
-                android:layout_marginTop="14dp"
-                android:gravity="center"
-                android:text="Contraseña:"
-                android:textColor="@color/negro" />
-
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/imageView6"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="Usuario:"
-                android:textColor="@color/negro" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="190dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="15dp"
-                android:foregroundGravity="center"
-                app:srcCompat="@drawable/logo_bienvenido" />
-
-            <Button
-                android:id="@+id/Login_btnLogin"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_below="@+id/Login_Switch_Rememberme"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_weight="0.2"
-                android:autoText="false"
-                android:background="@drawable/obj_redondo"
-                android:backgroundTint="@color/colorPrimary"
-                android:textColor="@color/letras_btn_blancas"
-                android:foregroundGravity="center"
-                android:gravity="center_horizontal|center"
-                android:text="Iniciar sesión" />
-
-            <Button
-                android:id="@+id/login_btnRegister"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_alignStart="@+id/Login_btnLogin"
-                android:layout_below="@+id/Login_btnLogin"
-                android:layout_gravity="center"
-                android:layout_marginTop="19dp"
-                android:layout_weight="0.2"
-                android:textColor="@color/letras_btn_blancas"
-                android:background="@drawable/obj_redondo"
-                android:backgroundTint="@color/colorPrimary"
-                android:gravity="center_horizontal|center"
-                android:text="Registrame" />
-            <Switch
-                android:id="@+id/Login_Switch_Rememberme"
-                android:layout_width="wrap_content"
-                android:layout_height="22dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="19dp"
-                android:layout_centerHorizontal="true"
-                android:text="@string/Recuerdame"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_below="@+id/login_textfieldboxes_contraseña"/>
-
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:id="@+id/login_textfieldboxes_curp_edCorreo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:id="@+id/login_textfieldboxes_curp_edContraseña"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/blanco">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="520dp">
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes android:id="@+id/login_textfieldboxes_correo" android:layout_width="345dp" android:layout_height="40dp" android:layout_below="@+id/textView6" android:layout_centerHorizontal="true" android:layout_gravity="center" android:ems="10" android:layout_marginTop="13dp" android:gravity="center" android:hint="alguien@email.com" android:inputType="text|textEmailAddress" android:password="false" android:textColorHint="@color/grisoscuro" app:labelText="@string/hint_correo" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:useDenseSpacing="true">
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText android:id="@+id/login_textfieldboxes_curp_edCorreo" android:layout_width="345dp" android:layout_height="40dp" android:inputType="textEmailAddress"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes android:id="@+id/login_textfieldboxes_contraseña" android:layout_width="345dp" android:layout_height="40dp" android:layout_alignStart="@+id/login_textfieldboxes_correo" android:layout_below="@+id/textView7" android:layout_gravity="center" android:layout_marginTop="13dp" android:ems="10" android:gravity="center" android:inputType="textPersonName|textPassword" android:password="true" android:textColorHint="@color/grisoscuro" app:endIcon="@drawable/show_password_24px" app:labelText="@string/hint_password" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/login_textfieldboxes_correo" app:useDenseSpacing="true">
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText android:id="@+id/login_textfieldboxes_curp_edContraseña" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="textPassword"/>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            <TextView android:id="@+id/textView7" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentStart="true" android:layout_below="@+id/login_textfieldboxes_correo" android:layout_marginTop="14dp" android:gravity="center" android:text="Contraseña:" android:textColor="@color/negro"/>
+            <TextView android:id="@+id/textView6" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentStart="true" android:layout_below="@+id/imageView6" android:layout_marginTop="20dp" android:gravity="center" android:text="Usuario:" android:textColor="@color/negro"/>
+            <ImageView android:id="@+id/imageView6" android:layout_width="wrap_content" android:layout_height="190dp" android:layout_alignParentStart="true" android:layout_alignParentTop="true" android:layout_marginTop="15dp" android:foregroundGravity="center" app:srcCompat="@drawable/logo_bienvenido"/>
+            <Button android:id="@+id/Login_btnLogin" android:layout_width="200dp" android:layout_height="40dp" android:layout_below="@+id/Login_Switch_Rememberme" android:layout_centerHorizontal="true" android:layout_gravity="center" android:layout_marginTop="16dp" android:layout_weight="0.2" android:autoText="false" android:background="@drawable/obj_redondo" android:backgroundTint="@color/colorPrimary" android:textColor="@color/letras_btn_blancas" android:foregroundGravity="center" android:gravity="center_horizontal|center" android:text="Iniciar sesión"/>
+            <Button android:id="@+id/login_btnRegister" android:layout_width="200dp" android:layout_height="40dp" android:layout_alignStart="@+id/Login_btnLogin" android:layout_below="@+id/Login_btnLogin" android:layout_gravity="center" android:layout_marginTop="19dp" android:layout_weight="0.2" android:textColor="@color/letras_btn_blancas" android:background="@drawable/obj_redondo" android:backgroundTint="@color/colorPrimary" android:gravity="center_horizontal|center" android:text="Registrame"/>
+            <Switch android:id="@+id/Login_Switch_Rememberme" android:layout_width="wrap_content" android:layout_height="22dp" android:layout_marginEnd="8dp" android:layout_marginStart="8dp" android:layout_marginTop="19dp" android:layout_centerHorizontal="true" android:text="@string/Recuerdame" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" android:layout_below="@+id/login_textfieldboxes_contraseña"/>
         </RelativeLayout>
-
     </ScrollView>
-
 </RelativeLayout>

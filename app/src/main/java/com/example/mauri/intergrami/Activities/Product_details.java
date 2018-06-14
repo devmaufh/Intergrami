@@ -99,10 +99,10 @@ public class Product_details extends AppCompatActivity  {
                 id_user=prefs.getString("id_user","'null'");
                 monto=txtPrecio.getText().toString();
                 confirmaCompra();
-                if(flag) {
+                /*if(flag) {
                     compra(id_producto, id_user, monto);
                     finish();
-                }else flag=false;
+                }else flag=false;*/
             }
         });
     }
@@ -249,7 +249,8 @@ public class Product_details extends AppCompatActivity  {
             public void onClick(DialogInterface dialogInterface, int i) {
                 switch (i){
                     case DialogInterface.BUTTON_POSITIVE:
-                        flag=true;
+                        compra(id_producto, id_user, monto);
+                        finish();
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         flag=false;
@@ -259,5 +260,6 @@ public class Product_details extends AppCompatActivity  {
         };
         AlertDialog.Builder builder= new AlertDialog.Builder(Product_details.this);
         builder.setMessage("¿Deseas comprar este producto?").setPositiveButton("Si",dialogClickListener).setNegativeButton("No",dialogClickListener).show();
+
     }
 }

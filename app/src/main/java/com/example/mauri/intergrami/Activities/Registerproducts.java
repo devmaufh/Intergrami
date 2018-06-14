@@ -81,6 +81,7 @@ public class Registerproducts extends AppCompatActivity {
                     if(validatodo(name,descripcion,precio,imagesPath.size())){
                         registraproducto(name,descripcion,precio,id_user);
                         UploadAllImages();
+                        finish();
                         //Toast.makeText(getApplicationContext(),"PORTADA: "+l.get(portada),Toast.LENGTH_SHORT).show();
                     }
                 }

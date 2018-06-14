@@ -1,5 +1,5 @@
 <resources>
-    <string name="ip_server">192.168.1.125</string>
+    <string name="ip_server">192.168.1.73</string>
     <!--- Login-->
     <string name="app_name">Capital Fresco</string>
     <string name="register">Registro</string>

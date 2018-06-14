@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -21,7 +22,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.mauri.intergrami.R;
+import com.example.mauri.intergrami.Utils.UploadImages;
 import com.example.mauri.intergrami.Utils.ValidaCampos;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,10 +39,12 @@ import studio.carbonylgroup.textfieldboxes.SimpleTextChangedWatcher;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
 
 public class Register extends AppCompatActivity {
+    private String ip;
     Button btnRegistro,btnAddPhoto;
     TextFieldBoxes tfbCurp, tfbNombre,tfbDireccion,tfbTelefono,tfbCorreo,tfbContraseña,tfbValidaContraseña;
     ExtendedEditText edCurp,edNombre,edDireccion,edTelefono,edCorreo,edContraseña,edValidaContraseña;
     int flagPassword2=0,flagPassword=0;
+    String pathImage="";
     //For image:
     private static int RESULT_LOAD_IMG = 1;
     String imgDecodableString;
@@ -51,6 +61,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
                 if(samePasswords("Nombre1","Nombre1")){
                     Snackbar.make(view,"Iguales",Snackbar.LENGTH_SHORT).show();
+                    runRegister();
                 }
                 }
         });
@@ -65,10 +76,11 @@ public class Register extends AppCompatActivity {
     private void setToolbar(){
         Toolbar toolbar= (Toolbar)findViewById(R.id.registro_toolbar); //Muestra el toolbar como ActionBar
         setSupportActionBar(toolbar);//Muestra titulo de toolbar
-        toolbar.setTitle("Intergrami");
+        toolbar.setTitle("Capital Fresco");
 
     }
     private void bindUI(){
+        ip= getResources().getString(R.string.ip_server);
         tfbNombre=(TextFieldBoxes)findViewById(R.id.registro_textfieldboxes_nombre);
         edNombre=(ExtendedEditText)findViewById(R.id.registro_textfieldboxes_nombre_edittext);
         tfbCurp=(TextFieldBoxes)findViewById(R.id.registro_textfieldboxes_curp);
@@ -190,10 +202,10 @@ public class Register extends AppCompatActivity {
                 CircleImageView imgView = (CircleImageView) findViewById(R.id.registro_fotoperfil);
                 imgView.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
+                Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_SHORT).show();
+                pathImage=selectedImage.toString();
 
             } else {
-                //Toast.makeText(this, getResources().getString(R.string.nombre),//Modificar String
-                  //      Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(this,getResources().getString(R.string.nombre), Toast.LENGTH_LONG)//Modificar string
@@ -209,6 +221,53 @@ public class Register extends AppCompatActivity {
             EasyPermissions.requestPermissions(this, "Access for storage",
                     101, galleryPermissions);
         }
+    }
+    private void runRegister(){
+        String nombre=edNombre.getText().toString();
+        String curp=edCurp.getText().toString();
+        String direccion=edDireccion.getText().toString();
+        String telefono=edTelefono.getText().toString();
+        String correo=edCorreo.getText().toString();
+        String contraseña=edContraseña.getText().toString();
+        String urlfoto= UploadImages.randomName(""+((int)(Math.random()*1000+1)));
+        Registra(curp,nombre,direccion,telefono,correo,contraseña,urlfoto);
+        finish();
+        Intent intent= new Intent(Register.this,login.class);
+        startActivity(intent);
+    }
+    private void upload_profile_photo(String namepath){
+        UploadImages.ServiceUploadFotos(ip,           //Verificar el path!
+                "AddProfilePhoto.php",
+                pathImage,
+                namepath,
+                Register.this
+                ,1);
+    }
+    private void Registra(String curp, String Nombre, String Direccion, String Telefono, String Correo, String Contrasena, final String urlfoto){
+        String url="http://"+ip+"/intergrami/insercciones/new_users.php?" +
+                "nombre="+Nombre+
+                "&curp="+curp+
+                "&direccion="+Direccion +
+                "&correo="+Correo+
+                "&password="+Contrasena+
+                "&urlfoto="+urlfoto+
+                "&telefono="+Telefono;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(Register.this, "Registro correcto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, "PathImage NO NULL: " + pathImage, Toast.LENGTH_SHORT).show();
+                upload_profile_photo(urlfoto);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Register.this, getResources().getString(R.string.algo_anda_mal), Toast.LENGTH_SHORT).show();
+            }
+        });
+        queue.add(request);
     }
 
 }
